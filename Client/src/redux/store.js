@@ -2,12 +2,12 @@ import {
   compose,
   combineReducers,
   applyMiddleware,
-  legacy_createStore
-} from 'redux';
-import thunk from 'redux-thunk';
+  legacy_createStore,
+} from "redux";
+import thunk from "redux-thunk";
 
-import { authReducer } from './LoginReducer/authReducer';
-import { productReducer } from './products/productReducer';
+// import { authReducer } from './LoginReducer/authReducer';
+// import { productReducer } from './products/productReducer';
 
 const rootReducer = combineReducers({
   // Add the reducers here...
