@@ -22,12 +22,17 @@ const auth = async (req, res, next) => {
 
       if (decoded) {
         req.body.userID = decoded.userID;
-        next();
+        req.body.author = decoded.username;
+        return next();
       } else
         return res.status(400).send({
           error: 'Access denied! You are not allowed to perform this action.'
         });
     }
+    return res.status(400).send({
+      error:
+        'Access denied! You are not logged in to perform this action. Please login first.'
+    });
   } catch (err) {
     return res.status(400).send({ error: err.message });
   }

@@ -1,15 +1,28 @@
 const mongoose = require('mongoose');
 
+const contentSchema = new mongoose.Schema({
+  sub_headings: [String],
+  descriptions: [String],
+  images: [String]
+});
+
+const commentSchema = new mongoose.Schema({
+  userID: String,
+  username: String,
+  comment: String
+});
+
 const postSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    body: String,
-    device: {
-      type: String,
-      enum: ['Laptop', 'Tablet', 'Mobile'],
-      required: true
-    },
-    no_of_comments: Number,
+    author: { type: String, required: true },
+    category: { type: String, required: true },
+    comments: [commentSchema],
+    content: contentSchema,
+    cover_image: String,
+    rating: Number,
+    likes: Number,
+    date: String,
     userID: String
   },
   {
@@ -20,5 +33,3 @@ const postSchema = new mongoose.Schema(
 const PostModel = mongoose.model('post', postSchema);
 
 module.exports = { PostModel };
-
-// Note -: The above schema is subject to change.
