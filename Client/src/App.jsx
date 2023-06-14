@@ -1,9 +1,9 @@
-import './App.css';
-
+import "./App.css";
+import UserRoutes from "./pages/AllRoutes/UserRoutes";
 function App() {
   return (
-    <div className='App'>
-      <h1>Hello...</h1>
+    <div className="App">
+      <UserRoutes />
     </div>
   );
 }
