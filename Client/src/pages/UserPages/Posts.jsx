@@ -85,11 +85,25 @@ const Posts = () => {
             onChange={(e) => setHeroImgURL(e.target.value)}
           />
         </Editable>
+        <Editable defaultValue="Blog Sub-Heading-1">
+          <EditablePreview />
+          <EditableInput
+            value={headingOne}
+            onChange={(e) => setHeadingOne(e.target.value)}
+          />
+        </Editable>
         <Editable defaultValue="Blog Content-1">
           <EditablePreview />
           <EditableInput
             value={contentOne}
             onChange={(e) => setContentOne(e.target.value)}
+          />
+        </Editable>
+        <Editable defaultValue="Blog Sub-Heading-2">
+          <EditablePreview />
+          <EditableInput
+            value={headingTwo}
+            onChange={(e) => setHeadingTwo(e.target.value)}
           />
         </Editable>
         <Editable defaultValue="Blog Content-2">
@@ -106,6 +120,13 @@ const Posts = () => {
             onChange={(e) => setblogImgURL(e.target.value)}
           />
         </Editable>{" "}
+        <Editable defaultValue="Blog Sub-Heading-3">
+          <EditablePreview />
+          <EditableInput
+            value={headingThree}
+            onChange={(e) => setHeadingThree(e.target.value)}
+          />
+        </Editable>
         <Editable defaultValue="Blog Content-3">
           <EditablePreview />
           <EditableInput
@@ -113,6 +134,13 @@ const Posts = () => {
             onChange={(e) => setContentThree(e.target.value)}
           />
         </Editable>{" "}
+        <Editable defaultValue="Blog Sub-Heading-4">
+          <EditablePreview />
+          <EditableInput
+            value={headingFour}
+            onChange={(e) => setHeadingFour(e.target.value)}
+          />
+        </Editable>
         <Editable defaultValue="Blog Content-4">
           <EditablePreview />
           <EditableInput
