@@ -18,7 +18,7 @@ const signup = async (req, res) => {
 
     let hash = bcrypt.hashSync(password, 5);
 
-    let user = new UserModel({ ...req.body, password: hash, isAdmin: true });
+    let user = new UserModel({ ...req.body, password: hash, isAdmin: false });
     await user.save();
 
     return res.status(200).send({ message: 'Registration successful!' });

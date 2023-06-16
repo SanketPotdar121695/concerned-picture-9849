@@ -177,3 +177,5 @@ module.exports = {
   addComment,
   deleteComment
 };
+
+// http://API.cyclic.app/posts/myPosts
