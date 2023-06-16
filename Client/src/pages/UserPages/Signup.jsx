@@ -19,9 +19,26 @@ import {
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as LinkNav, NavLink } from "react-router-dom";
+import axios from "axios"
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
+  const [first_name, setFirstName] = useState("")
+  const [last_name, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPass] = useState("")
+  const [age, setAge] = useState("")
+  const [gender, setGender] = useState("")
+  const [city, setCity] = useState("")
+
+
+  const handleSubmit = () => {
+    let payload = { first_name, last_name, email, password, age, city, gender, isAdmin: false }
+    // console.log(payload)
+    axios.post("https://garden-guru.cyclic.app/users/register", payload).then((res) => {
+      console.log(res)
+    })
+  }
 
   return (
     <Flex
@@ -34,9 +51,7 @@ export default function SignupCard() {
           <Heading fontSize={'4xl'} textAlign={'center'}>
             Sign up
           </Heading>
-          <Text fontSize={'lg'} color={'gray.600'}>
-            to enjoy all of our cool features ✌️
-          </Text>
+
         </Stack>
         <Box
           rounded={'lg'}
@@ -48,24 +63,24 @@ export default function SignupCard() {
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
+                  <Input type="text" value={first_name} onChange={(e) => setFirstName(e.target.value)} />
                 </FormControl>
               </Box>
               <Box>
                 <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
+                  <Input type="text" value={last_name} onChange={(e) => setLastName(e.target.value)} />
                 </FormControl>
               </Box>
             </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? 'text' : 'password'} />
+                <Input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPass(e.target.value)} />
                 <InputRightElement h={'full'}>
                   <Button
                     variant={'ghost'}
@@ -79,23 +94,22 @@ export default function SignupCard() {
             </FormControl>
             <FormControl id="age" isRequired>
               <FormLabel>Age</FormLabel>
-              <Input type="number" />
+              <Input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
             </FormControl>
             <FormControl id="City" isRequired>
               <FormLabel>City</FormLabel>
-              <Input type="text" />
+              <Input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
             </FormControl>
             <FormControl id="City" isRequired>
-              <FormLabel>Gender</FormLabel>
-              <Select>Gender
-                {/* <Option>Male</Option>
-                <Option>Female</Option>
-                <Option>Other</Option> */}
-
+              <FormLabel></FormLabel>
+              <Select placeholder='Gender' onChange={(e) => setGender(e.target.value)}>
+                <option value='option1' >male</option>
+                <option value='option2'>female</option>
+                <option value='option3'>other</option>
               </Select>
             </FormControl>
             <Stack spacing={10} pt={2}>
-              <Button
+              <Button onClick={handleSubmit}
                 loadingText="Submitting"
                 size="lg"
                 bg={'green.400'}
@@ -103,7 +117,8 @@ export default function SignupCard() {
                 _hover={{
                   bg: 'green.500',
                 }}>
-                Sign up
+                <LinkNav color={'green.400'} to={"/login"}> Sign up</LinkNav>
+
               </Button>
             </Stack>
             <Stack pt={6}>
