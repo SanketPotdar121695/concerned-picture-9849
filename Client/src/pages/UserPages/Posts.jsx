@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Heading, Img, Input, Textarea } from "@chakra-ui/react";
+import { Box, Button, Heading } from "@chakra-ui/react";
 import {
   Editable,
   EditableInput,
@@ -77,7 +77,7 @@ const Posts = () => {
             onChange={(e) => setTitle(e.target.value)}
           />
         </Editable>
-        {/* Image URL */}
+        {/* Hero Image URL */}
         <Editable defaultValue="Blog Hero Image URl">
           <EditablePreview />
           <EditableInput
@@ -85,20 +85,23 @@ const Posts = () => {
             onChange={(e) => setHeroImgURL(e.target.value)}
           />
         </Editable>
+        {/* Blog Sub-Heading-1 */}
         <Editable defaultValue="Blog Sub-Heading-1">
-          <EditablePreview />
+          <EditablePreview textAlign={"left"} />
           <EditableInput
             value={headingOne}
             onChange={(e) => setHeadingOne(e.target.value)}
           />
         </Editable>
+        {/* Blog Content-1 */}
         <Editable defaultValue="Blog Content-1">
           <EditablePreview />
-          <EditableInput
+          <EditableTextarea
             value={contentOne}
             onChange={(e) => setContentOne(e.target.value)}
           />
         </Editable>
+        {/* Blog Sub-Heading-2 */}
         <Editable defaultValue="Blog Sub-Heading-2">
           <EditablePreview />
           <EditableInput
@@ -106,9 +109,10 @@ const Posts = () => {
             onChange={(e) => setHeadingTwo(e.target.value)}
           />
         </Editable>
+        {/* Blog Content-2 */}
         <Editable defaultValue="Blog Content-2">
           <EditablePreview />
-          <EditableInput
+          <EditableTextarea
             value={contentTwo}
             onChange={(e) => setContentTwo(e.target.value)}
           />
