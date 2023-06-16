@@ -6,6 +6,8 @@ import {
   EditableTextarea,
   EditablePreview,
 } from "@chakra-ui/react";
+import { useSelector, useDispatch } from "react-redux";
+import { postPostFn } from "../../redux/postReducer/action";
 const Posts = () => {
   const [title, setTitle] = useState("");
   //Headings
@@ -23,6 +25,10 @@ const Posts = () => {
   const [blogimgURL, setblogImgURL] = useState("");
   const [blogimgURLTwo, setblogImgURLTwo] = useState("");
   const [blogimgURLThree, setblogImgURLThree] = useState("");
+
+  const data = useSelector((store) => store.postReducer);
+  console.log(data);
+  const dispatch = useDispatch();
 
   const handlePostBlog = () => {
     /**
@@ -53,6 +59,7 @@ const Posts = () => {
       )}`,
     };
     console.log(payload);
+    dispatch(postPostFn(payload));
   };
 
   return (

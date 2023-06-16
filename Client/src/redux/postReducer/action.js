@@ -6,9 +6,9 @@ import {
   POST_POST_REQUEST_SUCCESS,
   POST_REQUEST_FAILURE,
   POST_REQUEST_PENDING,
-} from "./actionType";
+} from "./actionTypes";
 
-const API = ``;
+const API = `https://garden-guru.cyclic.app/`;
 
 //For Getting The Data
 export const getPostFn = (obj) => (dispatch) => {
@@ -30,7 +30,7 @@ export const getPostFn = (obj) => (dispatch) => {
 export const postPostFn = (postData) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
   return axios
-    .post(API, postData)
+    .post(`${API}create`, postData)
     .then((res) => {
       dispatch({ type: POST_POST_REQUEST_SUCCESS });
     })
