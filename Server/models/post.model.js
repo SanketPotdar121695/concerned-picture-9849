@@ -12,6 +12,16 @@ const commentSchema = new mongoose.Schema({
   comment: String
 });
 
+const likeSchema = {
+  userID: String,
+  like: String
+};
+
+const subscribeSchema = {
+  userID: String,
+  subscribed: Boolean
+};
+
 const postSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
@@ -20,8 +30,9 @@ const postSchema = new mongoose.Schema(
     comments: [commentSchema],
     content: contentSchema,
     cover_image: String,
+    subscribe: [subscribeSchema],
+    likes: [likeSchema],
     rating: Number,
-    likes: Number,
     date: String,
     userID: String
   },
@@ -30,6 +41,7 @@ const postSchema = new mongoose.Schema(
   }
 );
 
+const DeletedPostModel = mongoose.model('deleted_post', postSchema);
 const PostModel = mongoose.model('post', postSchema);
 
-module.exports = { PostModel };
+module.exports = { PostModel, DeletedPostModel };
