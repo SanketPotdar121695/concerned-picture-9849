@@ -1,0 +1,55 @@
+.comment-section {
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  form {
+    margin-bottom: 10px;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 100px;
+    resize: vertical;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+  
+  button {
+    background-color: greenyellow;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  .comment-list {
+    border: 1px solid gray;
+    padding: 10px;
+  }
+  
+  .comment {
+    background-color: red;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .comment-text {
+    margin-bottom: 10px;
+  }
+  
+  .comment-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .edit-button,
+  .delete-button {
+    margin-left: 10px;
+  }
+  
