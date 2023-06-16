@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { secretKey1 } = require('../config/db');
 const { BlacklistModel } = require('../models/blacklist.model');
 
-const auth = async (req, res, next) => {
+const authAdmin = async (req, res, next) => {
   try {
     let token = req.headers.authorization?.split(' ')[1] || null;
 
@@ -20,14 +20,12 @@ const auth = async (req, res, next) => {
 
       let decoded = jwt.verify(token, secretKey1);
 
-      if (decoded) {
-        req.body.userID = decoded.userID;
-        req.body.author = decoded.username;
+      if (decoded && decoded.isAdmin) {
         return next();
       }
 
       return res.status(400).send({
-        error: 'Access denied! You are not allowed to perform this action.'
+        error: 'Access denied! You are not authorized to perform this action.'
       });
     }
 
@@ -40,4 +38,4 @@ const auth = async (req, res, next) => {
   }
 };
 
-module.exports = { auth };
+module.exports = { authAdmin };
