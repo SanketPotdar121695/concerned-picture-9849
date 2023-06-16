@@ -12,8 +12,42 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { useState } from 'react';
+import axios from "axios"
+import { Link as LinkNav, NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Login } from '../../redux/authReducer/action';
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function SimpleCard() {
+  const [first_name, setFirstName] = useState("")
+  const [last_name, setLastName] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation()
+  const auth = useSelector((store) => store.authReducer.isAuth);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const userDetails = {
+      first_name,
+      last_name,
+      email,
+      password
+    }
+    console.log("auth before ", auth)
+    dispatch(Login(userDetails)).then((res) => {
+      if (res.payload) {
+        localStorage.setItem("token", res.payload.token)
+        navigate("/")
+      } else {
+        alert("please Sign up")
+      }
+    })
+  }
+
   return (
     <Flex
       minH={'100vh'}
@@ -23,9 +57,7 @@ export default function SimpleCard() {
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-          <Text fontSize={'lg'} color={'gray.600'}>
-            to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
-          </Text>
+
         </Stack>
         <Box
           rounded={'lg'}
@@ -33,13 +65,25 @@ export default function SimpleCard() {
           boxShadow={'lg'}
           p={8}>
           <Stack spacing={4}>
+            <Box>
+              <FormControl id="firstName" isRequired>
+                <FormLabel>First Name</FormLabel>
+                <Input type="text" value={first_name} onChange={(e) => setFirstName(e.target.value)} />
+              </FormControl>
+            </Box>
+            <Box>
+              <FormControl id="lastName">
+                <FormLabel>Last Name</FormLabel>
+                <Input type="text" value={last_name} onChange={(e) => setLastName(e.target.value)} />
+              </FormControl>
+            </Box>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -49,7 +93,7 @@ export default function SimpleCard() {
                 <Checkbox>Remember me</Checkbox>
                 <Link color={'green.400'}>Forgot password?</Link>
               </Stack>
-              <Button
+              <Button onClick={handleSubmit}
                 bg={'green.400'}
                 color={'white'}
                 _hover={{
