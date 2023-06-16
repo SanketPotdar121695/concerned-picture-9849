@@ -1,4 +1,5 @@
 import "./App.css";
+import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 import UserRoutes from "./pages/AllRoutes/UserRoutes";
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
       <Navbar />
       <UserRoutes />
+      <Footer />
     </div>
   );
 }
