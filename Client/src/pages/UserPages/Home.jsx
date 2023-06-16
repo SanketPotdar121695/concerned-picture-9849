@@ -1,5 +1,5 @@
 import { Img, Box, Text, Heading, Button, Flex } from "@chakra-ui/react";
-import AllPostItems from "../../components/AllPostItems";
+import AllPostList from "../../components/AllPostsList";
 import React from "react";
 import { Icon } from '@chakra-ui/react'
 import { ArrowForwardIcon } from "@chakra-ui/icons";
@@ -31,7 +31,7 @@ const Home = () => {
       </Box>
 
       <Box>
-        <AllPostItems />
+        <AllPostList />
       </Box>
 
 
