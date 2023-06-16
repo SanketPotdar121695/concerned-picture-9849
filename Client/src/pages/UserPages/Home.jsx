@@ -9,7 +9,7 @@ const Home = () => {
     <Box w={"80%"} margin={"auto"} >
       <Box mt={"30px"}  >
 
-        <Img src="https://www.mygarden.com/sites/default/files/styles/msg_teaser_full_1200/public/lavender-oil-istock-826296566.jpg?h=01990d67&itok=5HWQvw3I"
+        <Img w="100%" src="https://www.mygarden.com/sites/default/files/styles/msg_teaser_full_1200/public/lavender-oil-istock-826296566.jpg?h=01990d67&itok=5HWQvw3I"
           borderRadius={"base"} m="auto" />
         <Flex direction="column" shadow={"xl"} p={"20px"} lineHeight="50px" textAlign="start" pl="40px">
 
