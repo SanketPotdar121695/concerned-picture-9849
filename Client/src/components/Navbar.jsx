@@ -88,26 +88,17 @@ export const Navbar = () => {
                     direction={'row'}
                     spacing={6}>
                     <Button
-                        as={'a'}
                         fontSize={'sm'}
                         fontWeight={400}
-                        variant={'link'}
-                        href={'#'}>
+                        variant={'link'}>
                         <LinkNav to={"/login"} >Sign In</LinkNav>
                     </Button>
                     <Button
-                        as={'a'}
                         display={{ base: 'none', md: 'inline-flex' }}
                         fontSize={'sm'}
                         fontWeight={600}
-                        color={'white'}
-                        bg={'green.400'}
-                        href={'#'}
-                        _hover={{
-                            bg: 'green.300',
-                        }}>
+                        colorScheme={'whatsapp'}
                         <LinkNav to={"/signup"} >Sign Up</LinkNav>
-
                     </Button>
                 </Stack>
             </Flex>
