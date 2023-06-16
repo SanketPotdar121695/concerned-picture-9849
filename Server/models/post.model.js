@@ -41,6 +41,7 @@ const postSchema = new mongoose.Schema(
   }
 );
 
+const DeletedPostModel = mongoose.model('deleted_post', postSchema);
 const PostModel = mongoose.model('post', postSchema);
 
-module.exports = { PostModel };
+module.exports = { PostModel, DeletedPostModel };
