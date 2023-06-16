@@ -1,9 +1,9 @@
-import {} from "./actionTypes";
+import {} from './actionTypes';
 
 const initalState = {
   isLoadin: false,
   isError: false,
-  posts: [],
+  posts: []
 };
 
 export const reducer = (state = initalState, { type, payload }) => {
