@@ -1,14 +1,14 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   DELETE_POST_REQUEST_SUCCESS,
   GET_POST_REQUEST_SUCCESS,
   PATCH_POST_REQUEST_SUCCESS,
   POST_POST_REQUEST_SUCCESS,
   POST_REQUEST_FAILURE,
-  POST_REQUEST_PENDING,
-} from "./actionTypes";
+  POST_REQUEST_PENDING
+} from './actionTypes';
 
-const API = `https://garden-guru.cyclic.app/`;
+const API = process.env.REACT_APP_baseURL;
 
 //For Getting The Data
 export const getPostFn = (obj) => (dispatch) => {
@@ -21,7 +21,7 @@ export const getPostFn = (obj) => (dispatch) => {
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
     })
     .catch((err) => {
-      console.log("API FAILURE", err);
+      console.log('API FAILURE', err);
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
@@ -35,7 +35,7 @@ export const postPostFn = (postData) => (dispatch) => {
       dispatch({ type: POST_POST_REQUEST_SUCCESS });
     })
     .catch((err) => {
-      console.log("API FAILURE", err);
+      console.log('API FAILURE', err);
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
@@ -49,7 +49,7 @@ export const patchPostFn = (id, postData) => (dispatch) => {
       dispatch({ type: PATCH_POST_REQUEST_SUCCESS, payload: res });
     })
     .catch((err) => {
-      console.log("API FAILURE", err);
+      console.log('API FAILURE', err);
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
@@ -60,11 +60,11 @@ export const deletePostFn = (id) => (dispatch) => {
   return axios
     .delete(`${API}/${id}`)
     .then((res) => {
-      console.log("delete req", res);
+      console.log('delete req', res);
       dispatch({ type: DELETE_POST_REQUEST_SUCCESS });
     })
     .catch((err) => {
-      console.log("API FAILURE", err);
+      console.log('API FAILURE', err);
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
