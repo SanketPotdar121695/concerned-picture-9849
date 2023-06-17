@@ -14,7 +14,10 @@ const commentSchema = new mongoose.Schema({
 
 const likeSchema = new mongoose.Schema({
   userID: String,
-  like: String
+  like: {
+    type: String,
+    enum: ['liked', 'disliked', 'neutral']
+  }
 });
 
 const subscribeSchema = new mongoose.Schema({
@@ -30,7 +33,7 @@ const postSchema = new mongoose.Schema(
     comments: [commentSchema],
     content: contentSchema,
     cover_image: String,
-    subscribe: [subscribeSchema],
+    subscribes: [subscribeSchema],
     likes: [likeSchema],
     rating: Number,
     date: String,
