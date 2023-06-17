@@ -1,5 +1,15 @@
-import React, { useState } from "react";
-import { Box, Button, Heading, Select } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  Heading,
+  Select,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+} from "@chakra-ui/react";
 import {
   Editable,
   EditableInput,
@@ -8,6 +18,8 @@ import {
 } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { postPostFn } from "../../redux/postReducer/action";
+
+import PreviewPost from "./../../components/PreviewPost";
 const Posts = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -32,6 +44,27 @@ const Posts = () => {
   // console.log(data);
   const dispatch = useDispatch();
 
+  useEffect(
+    () => {
+      console.log("form useEffect=>", blogpost);
+    },
+    [
+      // headingOne,
+      // headingTwo,
+      // headingThree,
+      // headingFour,
+      // contentOne,
+      // contentTwo,
+      // contentThree,
+      // contentFour,
+      // blogimgURL,
+      // blogimgURLTwo,
+      // blogimgURLThree,
+      // category,
+      // title,
+      // heroimgURL,
+    ]
+  );
   const handlePostBlog = () => {
     /**
      {
@@ -61,124 +94,202 @@ const Posts = () => {
         "en-US"
       )}`,
     };
-    setBlogpost(payload);
-    console.log(blogpost);
+   // setBlogpost(payload);
+    console.log(payload);
      dispatch(postPostFn(payload));
   };
 
   return (
     <Box>
-      {/* Form */}
-      <Box
-        border={"1px solid black"}
-        w={"50%"}
-        margin={"auto"}
-        display={"flex"}
-        gap={"5px"}
-        flexDirection={"column"}
-        padding={"25px"}
-        mt={"10px"}
-      >
-        {/* Heading */}
-        <Heading as={"h1"}>Add a Blog Post</Heading>
-        <Editable
-          // defaultValue="New Blog Title Here..."
-          placeholder="New Blog Title Here..."
-          fontSize="4xl"
-          textAlign={"left"}
-        >
-          <EditablePreview />
-          <EditableInput
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </Editable>
-        {/* Hero Image URL */}
-        <Editable placeholder="Blog Hero Image URl" textAlign={"left"}>
-          <EditablePreview />
-          <EditableInput
-            value={heroimgURL}
-            onChange={(e) => setHeroImgURL(e.target.value)}
-          />
-        </Editable>
-        {/* Blog Category */}
-        <Select
-          placeholder="Select Blog Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <option value="Houseplants">Houseplants</option>
-          <option value="Perennials">Perennials</option>
-          <option value="Indoor">Indoor </option>
-        </Select>
-        {/* Blog Sub-Heading-1 */}
-        <Editable textAlign={"left"} placeholder="Blog Sub-Heading-1">
-          <EditablePreview />
-          <EditableInput
-            value={headingOne}
-            onChange={(e) => setHeadingOne(e.target.value)}
-          />
-        </Editable>
-        {/* Blog Content-1 */}
-        <Editable defaultValue="Blog Content-1" textAlign={"left"}>
-          <EditablePreview />
-          <EditableTextarea
-            value={contentOne}
-            onChange={(e) => setContentOne(e.target.value)}
-          />
-        </Editable>
-        {/* Blog Sub-Heading-2 */}
-        <Editable defaultValue="Blog Sub-Heading-2" textAlign={"left"}>
-          <EditablePreview />
-          <EditableInput
-            value={headingTwo}
-            onChange={(e) => setHeadingTwo(e.target.value)}
-          />
-        </Editable>
-        {/* Blog Content-2 */}
-        <Editable defaultValue="Blog Content-2" textAlign={"left"}>
-          <EditablePreview />
-          <EditableTextarea
-            value={contentTwo}
-            onChange={(e) => setContentTwo(e.target.value)}
-          />
-        </Editable>
-        <Editable defaultValue="Blog Image URl-2" textAlign={"left"}>
-          <EditablePreview />
-          <EditableInput
-            value={blogimgURL}
-            onChange={(e) => setblogImgURL(e.target.value)}
-          />
-        </Editable>{" "}
-        <Editable defaultValue="Blog Sub-Heading-3" textAlign={"left"}>
-          <EditablePreview />
-          <EditableInput
-            value={headingThree}
-            onChange={(e) => setHeadingThree(e.target.value)}
-          />
-        </Editable>
-        <Editable defaultValue="Blog Content-3" textAlign={"left"}>
-          <EditablePreview />
-          <EditableInput
-            value={contentThree}
-            onChange={(e) => setContentThree(e.target.value)}
-          />
-        </Editable>{" "}
-        <Editable defaultValue="Blog Sub-Heading-4" textAlign={"left"}>
-          <EditablePreview />
-          <EditableInput
-            value={headingFour}
-            onChange={(e) => setHeadingFour(e.target.value)}
-          />
-        </Editable>
-        <Editable defaultValue="Blog Content-4" textAlign={"left"}>
-          <EditablePreview />
-          <EditableInput
-            value={contentFour}
-            onChange={(e) => setContentFour(e.target.value)}
-          />
-        </Editable>
-        <Button onClick={handlePostBlog}>Post Blog</Button>
+      <Box w={"90%"} margin={"auto"}>
+        <Tabs>
+          <TabList>
+            <Tab>Edit</Tab>
+            <Tab>Show</Tab>
+          </TabList>
+
+          <TabPanels>
+            <TabPanel>
+              {/* Form */}
+              <Box
+                //border={"1px solid black"}
+                w={"50%"}
+                margin={"auto"}
+                display={"flex"}
+                gap={"5px"}
+                flexDirection={"column"}
+                padding={"25px"}
+                mt={"10px"}
+                boxShadow={
+                  "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px"
+                }
+              >
+                {/* Heading */}
+                <Heading as={"h1"}>Add a Blog Post</Heading>
+                <Editable
+                  // defaultValue="New Blog Title Here..."
+                  placeholder="New Blog Title Here..."
+                  fontSize="4xl"
+                  textAlign={"left"}
+                >
+                  <EditablePreview />
+                  <EditableInput
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </Editable>
+                {/* Hero Image URL */}
+                <Editable placeholder="Blog Hero Image URL" textAlign={"left"}>
+                  <EditablePreview />
+                  <EditableInput
+                    value={heroimgURL}
+                    onChange={(e) => setHeroImgURL(e.target.value)}
+                  />
+                </Editable>
+                {/* Blog Category */}
+                <Select
+                  placeholder="Select Blog Category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  <option value="Houseplants">Houseplants</option>
+                  <option value="Perennials">Perennials</option>
+                  <option value="Indoor">Indoor </option>
+                </Select>
+                {/* Blog Sub-Heading-1 */}
+                <Editable
+                  textAlign={"left"}
+                  placeholder="Blog Sub-Heading-1"
+                  fontSize="2xl"
+                >
+                  <EditablePreview />
+                  <EditableInput
+                    value={headingOne}
+                    onChange={(e) => setHeadingOne(e.target.value)}
+                  />
+                </Editable>
+                <Editable defaultValue="Blog Image URL-1" textAlign={"left"}>
+                  <EditablePreview />
+                  <EditableInput
+                    value={blogimgURL}
+                    onChange={(e) => setblogImgURL(e.target.value)}
+                  />
+                </Editable>{" "}
+                {/* Blog Content-1 */}
+                <Editable defaultValue="Blog Content-1" textAlign={"left"}>
+                  <EditablePreview />
+                  <EditableTextarea
+                    value={contentOne}
+                    onChange={(e) => setContentOne(e.target.value)}
+                  />
+                </Editable>
+                {/* Blog Sub-Heading-2 */}
+                <Editable
+                  defaultValue="Blog Sub-Heading-2"
+                  textAlign={"left"}
+                  fontSize="2xl"
+                >
+                  <EditablePreview />
+                  <EditableInput
+                    value={headingTwo}
+                    onChange={(e) => setHeadingTwo(e.target.value)}
+                  />
+                </Editable>
+                <Editable defaultValue="Blog Image URL-2" textAlign={"left"}>
+                  <EditablePreview />
+                  <EditableInput
+                    value={blogimgURLTwo}
+                    onChange={(e) => setblogImgURLTwo(e.target.value)}
+                  />
+                </Editable>{" "}
+                {/* Blog Content-2 */}
+                <Editable defaultValue="Blog Content-2" textAlign={"left"}>
+                  <EditablePreview />
+                  <EditableTextarea
+                    value={contentTwo}
+                    onChange={(e) => setContentTwo(e.target.value)}
+                  />
+                </Editable>
+                <Editable
+                  defaultValue="Blog Sub-Heading-3"
+                  textAlign={"left"}
+                  fontSize="2xl"
+                >
+                  <EditablePreview />
+                  <EditableInput
+                    value={headingThree}
+                    onChange={(e) => setHeadingThree(e.target.value)}
+                  />
+                </Editable>
+                <Editable defaultValue="Blog Image URL-3" textAlign={"left"}>
+                  <EditablePreview />
+                  <EditableInput
+                    value={blogimgURLThree}
+                    onChange={(e) => setblogImgURLThree(e.target.value)}
+                  />
+                </Editable>{" "}
+                <Editable defaultValue="Blog Content-3" textAlign={"left"}>
+                  <EditablePreview />
+                  <EditableTextarea
+                    value={contentThree}
+                    onChange={(e) => setContentThree(e.target.value)}
+                  />
+                </Editable>{" "}
+                <Editable
+                  defaultValue="Blog Sub-Heading-4"
+                  textAlign={"left"}
+                  fontSize="2xl"
+                >
+                  <EditablePreview />
+                  <EditableInput
+                    value={headingFour}
+                    onChange={(e) => setHeadingFour(e.target.value)}
+                  />
+                </Editable>
+                <Editable defaultValue="Blog Content-4" textAlign={"left"}>
+                  <EditablePreview />
+                  <EditableTextarea
+                    value={contentFour}
+                    onChange={(e) => setContentFour(e.target.value)}
+                  />
+                </Editable>
+                <Button
+                  onClick={handlePostBlog}
+                  colorScheme="teal"
+                  variant="outline"
+                  _hover={{
+                    bg: "green.400",
+                    color: "white",
+                  }}
+                >
+                  Post Blog
+                </Button>
+              </Box>
+            </TabPanel>
+            <TabPanel>
+              {/* <p>two!</p> */}
+              <PreviewPost
+                blogpost={{
+                  headingOne,
+                  headingTwo,
+                  headingThree,
+                  headingFour,
+                  contentOne,
+                  contentTwo,
+                  contentThree,
+                  contentFour,
+                  blogimgURL,
+                  blogimgURLTwo,
+                  blogimgURLThree,
+                  category,
+                  title,
+                  heroimgURL,
+                  
+                }}
+              />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       </Box>
     </Box>
   );
