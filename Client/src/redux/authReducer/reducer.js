@@ -1,8 +1,8 @@
 import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './actionType';
 
+let token = localStorage.getItem('token') || null;
 const initialState = {
-  isAuth: false,
-  token: '',
+  isAuth: token ? true : false,
   isError: false,
   isLoading: false
 };
