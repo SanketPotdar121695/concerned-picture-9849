@@ -8,7 +8,9 @@ import {
   POST_REQUEST_PENDING
 } from './actionTypes';
 
-const API = process.env.REACT_APP_baseURL;
+
+const API = `https://garden-guru.cyclic.app`;
+
 
 //For Getting The Data
 export const getPostFn = (obj) => (dispatch) => {
@@ -27,10 +29,14 @@ export const getPostFn = (obj) => (dispatch) => {
 };
 
 //For Posting The Data
-export const postPostFn = (postData) => (dispatch) => {
+export const postPostFn = (payload) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
   return axios
-    .post(`${API}create`, postData)
+    .post(`${API}/posts/create`, payload, { headers })
     .then((res) => {
       dispatch({ type: POST_POST_REQUEST_SUCCESS });
     })
