@@ -8,14 +8,13 @@ import styled from "styled-components";
 
 
 function AllPostList() {
-    const data = useSelector((store) => store.postReducer
-        .posts);
+    const posts = useSelector((store) => store.postReducer.posts);
+    const token = useSelector((store) => store.authReducer.token);
     const dispatch = useDispatch()
     let limit = 3;
 
     useEffect(() => {
-        dispatch(getPostFn(limit))
-
+        dispatch(getPostFn(limit, token))
     }, [])
 
     return (
@@ -24,8 +23,9 @@ function AllPostList() {
                 <Text color={'red'} fontSize={"25px"} ml='3px' mt={"20px"} fontFamily={'monospace'} >Popular Posts</Text>
             </Box>
 
-            <DIV>
-                {data?.map((item) => {
+            <DIV >
+                <PostCard />
+                {posts?.map((item) => {
                     return <PostCard key={item.id} {...item} />
                 })}
 
@@ -38,9 +38,10 @@ function AllPostList() {
 export default AllPostList;
 
 const DIV = styled.div`
-margin-top:10px;
+width: 70%;
+/* margin-top:10px;
 display:grid;
 grid-template-columns:repeat(3,1fr);
 grid-template-rows:auto;
-gap:8px;
+gap:8px; */
  `

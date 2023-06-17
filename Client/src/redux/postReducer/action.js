@@ -8,16 +8,24 @@ import {
   POST_REQUEST_PENDING
 } from './actionTypes';
 
-const API = process.env.REACT_APP_baseURL;
+
+const API = `https://garden-guru.cyclic.app/posts/`;//process.env.REACT_APP_baseURL;
+
 
 //For Getting The Data
-export const getPostFn = (obj) => (dispatch) => {
+export const getPostFn = (obj, token) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
+  const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token?.token}`
+  };
+
+
   axios
-    .get(`${API}`, obj)
+    .get(`${API}`, { headers: headers })
     .then((res) => {
-      // console.log('res-data',res.data)
+      console.log('res-data', res.data)
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
     })
     .catch((err) => {
@@ -25,6 +33,23 @@ export const getPostFn = (obj) => (dispatch) => {
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
+// for top post
+export const getTopPostFn = (obj, token) => (dispatch) => {
+  dispatch({ type: POST_REQUEST_PENDING });
+
+
+  axios
+    .get(`${API}`,)
+    .then((res) => {
+      console.log('res-data', res.data)
+      dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
+    })
+    .catch((err) => {
+      console.log('API FAILURE', err);
+      dispatch({ type: POST_REQUEST_FAILURE });
+    });
+};
+
 
 //For Posting The Data
 export const postPostFn = (postData) => (dispatch) => {
