@@ -63,7 +63,7 @@ const Posts = () => {
     };
     setBlogpost(payload);
     console.log(blogpost);
-    // dispatch(postPostFn(payload));
+     dispatch(postPostFn(payload));
   };
 
   return (
