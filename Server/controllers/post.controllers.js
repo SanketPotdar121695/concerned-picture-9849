@@ -4,7 +4,8 @@ const createPost = async (req, res) => {
   try {
     let post = new PostModel({
       ...req.body,
-      likes: 0,
+      likes: [{ userID: req.body.userID, like: 'neutral' }],
+      subscribes: [{userID: req.body.userID, subscribed: false}],
       rating: 0,
       comments: []
     });
