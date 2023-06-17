@@ -12,15 +12,15 @@ const commentSchema = new mongoose.Schema({
   comment: String
 });
 
-const likeSchema = {
+const likeSchema = new mongoose.Schema({
   userID: String,
   like: String
-};
+});
 
-const subscribeSchema = {
+const subscribeSchema = new mongoose.Schema({
   userID: String,
   subscribed: Boolean
-};
+});
 
 const postSchema = new mongoose.Schema(
   {
