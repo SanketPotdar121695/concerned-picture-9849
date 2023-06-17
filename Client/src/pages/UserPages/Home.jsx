@@ -3,6 +3,8 @@ import AllPostList from "../../components/AllPostsList";
 import React from "react";
 import { Icon } from '@chakra-ui/react'
 import { ArrowForwardIcon } from "@chakra-ui/icons";
+import TopPosts from "../../components/TopPosts";
+import { Link as LinkNav, NavLink } from "react-router-dom";
 
 
 const Home = () => {
@@ -31,7 +33,24 @@ const Home = () => {
       </Box>
 
       <Box>
-        <AllPostList />
+        {/* <AllPostList /> */}
+        <Box bg='green.200' width={'98%'} margin={'auto'}>
+          <Text color={'red'} fontSize={"25px"} ml='3px' mt={"20px"} fontFamily={'monospace'} >Popular Posts</Text>
+        </Box>
+
+        <TopPosts />
+        <Box w={"80%"}> <LinkNav to="/allpost">
+          <Button size={"lg"} p={"10px"}
+            variant='outline'
+            bg={'green.400'}
+            color={'white'}
+            _hover={{
+              bg: 'green.500'
+            }}>
+            Show More Posts
+          </Button>
+        </LinkNav></Box>
+
       </Box>
 
 

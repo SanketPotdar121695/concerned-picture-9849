@@ -33,13 +33,21 @@ export const getPostFn = (obj, token) => (dispatch) => {
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
+
+
 // for top post
-export const getTopPostFn = (obj, token) => (dispatch) => {
+export const getTopPosts = (token) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
 
+  const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token?.token}`
+  };
+
+
   axios
-    .get(`${API}`,)
+    .get(`${API}?_sort=rating&_order=desc&_limit=3&_page=1`, { headers: headers })
     .then((res) => {
       console.log('res-data', res.data)
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });

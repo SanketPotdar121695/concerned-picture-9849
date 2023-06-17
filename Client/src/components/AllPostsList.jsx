@@ -19,12 +19,10 @@ function AllPostList() {
 
     return (
         <div>
-            <Box bg='green.200' width={'98%'} margin={'auto'}>
-                <Text color={'red'} fontSize={"25px"} ml='3px' mt={"20px"} fontFamily={'monospace'} >Popular Posts</Text>
-            </Box>
+
 
             <DIV >
-                <PostCard />
+
                 {posts?.map((item) => {
                     return <PostCard key={item.id} {...item} />
                 })}
