@@ -11,11 +11,10 @@ const API = process.env.REACT_APP_baseURL;
 export const Login = (userDetails) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
-    console.log(userDetails);
+    // console.log(userDetails);
     return instance.post(`/users/login`, userDetails).then(
-      (res) => dispatch({ type: LOGIN_SUCCESS, payload: res.data }),
-      (err) =>
-        dispatch({ type: LOGIN_FAILURE, payload: err.response.data || err })
+      (res) => dispatch({ type: LOGIN_SUCCESS, payload: res }),
+      (err) => dispatch({ type: LOGIN_FAILURE, payload: err.response })
     );
   };
 };
@@ -27,5 +26,5 @@ export const Logout = () => (dispatch) => {
     .then((res) => {
       dispatch({ type: LOGOUT });
     })
-    .catch((err) => dispatch({ type: LOGIN_FAILURE }));
+    .catch((err) => dispatch({ type: LOGIN_FAILURE, payload: err }));
 };

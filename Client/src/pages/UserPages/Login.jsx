@@ -18,6 +18,7 @@ import { Link as LinkNav, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Login } from '../../redux/authReducer/action';
 import { useNavigate, useLocation } from 'react-router-dom';
+// import Cookies from 'js-cookie';
 
 export default function SimpleCard() {
   const toast = useToast();
@@ -30,6 +31,8 @@ export default function SimpleCard() {
     (store) => store.authReducer
   );
 
+  // Cookies.remove("token");
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -38,28 +41,28 @@ export default function SimpleCard() {
       password
     };
 
-    dispatch(Login(userDetails));
+    dispatch(Login(userDetails)).then((res) => {
+      if (res.payload.status === 400) {
+        toast({
+          title: res.payload.data.error || res.payload.message || '',
+          description: res.payload.data.description || '',
+          status: 'error',
+          duration: 5000,
+          isClosable: false
+        });
+      } else {
+        toast({
+          title: res.payload.data.message,
+          status: 'success',
+          duration: 5000,
+          isClosable: false
+        });
+        navigate('/');
+      }
+    });
   };
 
-  if (isAuth) {
-    toast({
-      title: isAuth.message,
-      status: 'success',
-      duration: 3000,
-      isClosable: false
-    });
-    navigate('/');
-  }
-
-  if (isError) {
-    return toast({
-      title: isError.error || isError.message || '',
-      description: isError.description || '',
-      status: 'error',
-      duration: 3000,
-      isClosable: false
-    });
-  }
+  // console.log(token);
 
   return (
     <Flex

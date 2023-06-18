@@ -10,7 +10,6 @@ import i5 from '../../assets/images/kalanchoe-flaming-katy-2252484-blp-floradani
 import Cookies from 'js-cookie';
 
 const Home = () => {
-  const data = Cookies.get();
   return (
     <Box w={'80%'} margin={'auto'}>
       <Box mt={'30px'}>
@@ -28,7 +27,7 @@ const Home = () => {
           pl='40px'
         >
           <Heading size='xl' _hover={{ color: 'green' }} marginTop={'20px'}>
-            Making lavender Oil :Preserve the Scent og the South
+            Making lavender oil: Preserve the scent of the south
           </Heading>
           <Text size='20px'>
             Do you love lavender?You can process the fragrant in your garden
