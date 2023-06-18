@@ -18,7 +18,7 @@ export const reducer = (state = initalState, { type, payload }) => {
     case POST_REQUEST_PENDING:
       return { ...state, isLoading: true };
     case GET_POST_REQUEST_SUCCESS:
-      return { ...state, isLoading: false, product: payload };
+      return { ...state, isLoading: false, posts: payload };
     case POST_POST_REQUEST_SUCCESS:
       return { ...state, isLoading: false };
     case POST_REQUEST_FAILURE:
