@@ -6,17 +6,27 @@ import { Box, Text, Button, Flex } from "@chakra-ui/react";
 import { useEffect } from 'react';
 import styled from "styled-components";
 import { AllPostsSidebar } from './AllPostsSidebar';
+import { useSearchParams } from 'react-router-dom';
 
 
 function AllPostList() {
     const posts = useSelector((store) => store.postReducer.posts);
     const token = useSelector((store) => store.authReducer.token);
+    const [searchParams] = useSearchParams()
     const dispatch = useDispatch()
     let limit = 3;
 
+    let obj = {
+        params: {
+            category: searchParams.getAll("category"),
+            _sort: searchParams.get("orderRating") && "rating",
+            _order: searchParams.get("orderRating")
+        }
+    }
+
     useEffect(() => {
-        dispatch(getPostFn(limit, token))
-    }, [])
+        dispatch(getPostFn(searchParams.toString(), token))
+    }, [searchParams])
 
     return (
         <div>
@@ -32,7 +42,7 @@ function AllPostList() {
                 <Box w={"78%"}>
                     <DIV>
                         {posts?.map((item) => {
-                            return <PostCard key={item.id} title={item.title} category={item.category} image={item.cover_image} />
+                            return <PostCard key={item.id} title={item.title} rating={item.rating} category={item.category} image={item.cover_image} />
                         })}
                     </DIV>
 
@@ -51,7 +61,8 @@ export default AllPostList;
 const DIV = styled.div`
 margin:auto;
 margin-top:20px;
-
+margin-left: 0;
+width: 80%;
 /* display:grid;
 grid-template-columns:repeat(2,1fr);
 gap: 5px;
