@@ -184,7 +184,10 @@ const Posts = () => {
                   />
                 </Editable>
                 {/* Hero Image URL */}
-                <Editable placeholder="Blog Hero Image URL" textAlign={"left"}>
+                <Editable
+                  placeholder="Add a cover Image URL"
+                  textAlign={"left"}
+                >
                   <EditablePreview />
                   <EditableInput
                     value={heroimgURL}
