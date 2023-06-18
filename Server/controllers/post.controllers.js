@@ -5,7 +5,7 @@ const createPost = async (req, res) => {
     let post = new PostModel({
       ...req.body,
       likes: [{ userID: req.body.userID, like: 'neutral' }],
-      subscribes: [{userID: req.body.userID, subscribed: false}],
+      subscribes: [{ userID: req.body.userID, subscribed: false }],
       rating: 0,
       comments: []
     });
@@ -163,7 +163,8 @@ const deleteComment = async (req, res) => {
     }
 
     return res.status(400).send({
-      error: 'Something went wrong! Please provide correct credentials.'
+      error: 'Something went wrong!',
+      description: 'Please provide correct credentials.'
     });
   } catch (err) {
     return res.status(400).send({ error: err.message });

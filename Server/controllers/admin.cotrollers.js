@@ -27,9 +27,10 @@ const updateUserforAdmin = async (req, res) => {
       });
     }
 
-    return res
-      .status(400)
-      .send({ error: 'Something went wrong! Wrong credential provided.' });
+    return res.status(400).send({
+      error: 'Something went wrong!',
+      description: 'Wrong credential provided.'
+    });
   } catch (err) {
     return res.status(400).send({ error: err.message });
   }
@@ -47,9 +48,10 @@ const deleteUserforAdmin = async (req, res) => {
       });
     }
 
-    return res
-      .status(400)
-      .send({ error: 'Something went wrong! Wrong credential provided.' });
+    return res.status(400).send({
+      error: 'Something went wrong!',
+      description: 'Wrong credential provided.'
+    });
   } catch (err) {
     return res.status(400).send({ error: err.message });
   }
@@ -136,9 +138,10 @@ const deletePostforAdmin = async (req, res) => {
       });
     }
 
-    return res
-      .status(400)
-      .send({ error: 'Something went wrong! Wrong credential provided.' });
+    return res.status(400).send({
+      error: 'Something went wrong!',
+      description: 'Wrong credential provided.'
+    });
   } catch (err) {
     return res.status(400).send({ error: err.message });
   }

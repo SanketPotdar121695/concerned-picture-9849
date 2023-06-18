@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Button, Heading, Image, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import Lander from '../assets/images/404-landing-page-free-vector.jpg';
 
 const PageNotFound = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const PageNotFound = () => {
         Oops! Page not found
       </Heading>
       <Image
-        src='https://static.vecteezy.com/system/resources/previews/006/549/647/original/404-landing-page-free-vector.jpg'
+        src={Lander}
         alt='PageNotFount'
         w={{ base: '80%', md: '70%', lg: '60%' }}
         m='auto'

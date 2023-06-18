@@ -13,8 +13,9 @@ const auth = async (req, res, next) => {
 
       if (existingToken.length) {
         return res.status(400).send({
-          error:
-            'Access denied! You are not logged in to perform this action. Please login again.'
+          error: 'Access denied!',
+          description:
+            'You are not logged in to perform this action. Please login again.'
         });
       }
 
@@ -27,13 +28,15 @@ const auth = async (req, res, next) => {
       }
 
       return res.status(400).send({
-        error: 'Access denied! You are not allowed to perform this action.'
+        error: 'Access denied!',
+        description: 'You are not allowed to perform this action.'
       });
     }
 
     return res.status(400).send({
-      error:
-        'Access denied! You are not logged in to perform this action. Please login first.'
+      error: 'Access denied!',
+      description:
+        'You are not logged in to perform this action. Please login first.'
     });
   } catch (err) {
     return res.status(400).send({ error: err.message });

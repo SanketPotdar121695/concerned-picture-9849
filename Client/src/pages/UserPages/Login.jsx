@@ -11,98 +11,118 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  useToast
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import axios from "axios"
-import { Link as LinkNav, NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link as LinkNav, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Login } from '../../redux/authReducer/action';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function SimpleCard() {
-  const [first_name, setFirstName] = useState("")
-  const [last_name, setLastName] = useState("")
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const toast = useToast();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation()
-  const auth = useSelector((store) => store.authReducer.isAuth);
+  const location = useLocation();
+  const { isAuth, isLoading, isError } = useSelector(
+    (store) => store.authReducer
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const userDetails = {
-      first_name,
-      last_name,
       email,
       password
-    }
-    console.log("auth before ", auth)
-    dispatch(Login(userDetails)).then((res) => {
-      if (res.payload) {
-        localStorage.setItem("token", res.payload.token)
-        navigate("/")
-      } else {
-        alert("please Sign up")
-      }
-    })
+    };
+
+    dispatch(Login(userDetails));
+  };
+
+  if (isAuth) {
+    toast({
+      title: isAuth.message,
+      status: 'success',
+      duration: 3000,
+      isClosable: false
+    });
+    navigate('/');
+  }
+
+  if (isError) {
+    return toast({
+      title: isError.error || isError.message || '',
+      description: isError.description || '',
+      status: 'error',
+      duration: 3000,
+      isClosable: false
+    });
   }
 
   return (
     <Flex
       minH={'100vh'}
-      align={'center'}
       justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
+      bg={useColorModeValue('gray.50', 'gray.800')}
+    >
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
-          <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-
+          <Heading fontSize={{ base: '2xl', sm: '4xl' }}>
+            Sign in to your account
+          </Heading>
         </Stack>
         <Box
           rounded={'lg'}
           bg={useColorModeValue('white', 'gray.700')}
           boxShadow={'lg'}
-          p={8}>
-          <Stack spacing={4}>
-            <Box>
-              <FormControl id="firstName" isRequired>
-                <FormLabel>First Name</FormLabel>
-                <Input type="text" value={first_name} onChange={(e) => setFirstName(e.target.value)} />
+          p={8}
+        >
+          <form onSubmit={handleSubmit}>
+            <Stack spacing={4}>
+              <FormControl id='email' isRequired>
+                <FormLabel>Email address</FormLabel>
+                <Input
+                  type='text'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </FormControl>
-            </Box>
-            <Box>
-              <FormControl id="lastName">
-                <FormLabel>Last Name</FormLabel>
-                <Input type="text" value={last_name} onChange={(e) => setLastName(e.target.value)} />
+
+              <FormControl id='password' isRequired>
+                <FormLabel>Password</FormLabel>
+                <Input
+                  type='password'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </FormControl>
-            </Box>
-            <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
-              <Input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>Password</FormLabel>
-              <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </FormControl>
-            <Stack spacing={10}>
-              <Stack
-                direction={{ base: 'column', sm: 'row' }}
-                align={'start'}
-                justify={'space-between'}>
-                <Checkbox>Remember me</Checkbox>
-                <Link color={'green.400'}>Forgot password?</Link>
-              </Stack>
-              <Button onClick={handleSubmit}
-                bg={'green.400'}
-                color={'white'}
-                _hover={{
-                  bg: 'green.500'
-                }}>
-                Sign in
-              </Button>
             </Stack>
-          </Stack>
+
+            <Stack
+              direction={{ base: 'column', sm: 'row' }}
+              align={'start'}
+              justify={'space-between'}
+              mt={6}
+              mb={10}
+            >
+              <Checkbox>Remember me</Checkbox>
+              <Link color={'green.400'}>Forgot password?</Link>
+            </Stack>
+
+            <Button
+              w={'100%'}
+              bg={'green.400'}
+              color={'white'}
+              _hover={{
+                bg: 'green.500'
+              }}
+              type='submit'
+            >
+              Sign in
+            </Button>
+          </form>
         </Box>
       </Stack>
     </Flex>
