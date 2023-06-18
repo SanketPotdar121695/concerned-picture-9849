@@ -9,6 +9,11 @@ import {
   TabPanels,
   Tab,
   TabPanel,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  HStack,
+  useToast,
 } from "@chakra-ui/react";
 import {
   Editable,
@@ -16,6 +21,8 @@ import {
   EditableTextarea,
   EditablePreview,
 } from "@chakra-ui/react";
+import { RiHome4Line } from "react-icons/ri";
+import { EditIcon, ViewIcon } from "@chakra-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { postPostFn } from "../../redux/postReducer/action";
 
@@ -65,6 +72,7 @@ const Posts = () => {
       // heroimgURL,
     ]
   );
+  const toast = useToast();
   const handlePostBlog = () => {
     /**
      {
@@ -94,18 +102,53 @@ const Posts = () => {
         "en-US"
       )}`,
     };
-   // setBlogpost(payload);
+    // setBlogpost(payload);
     console.log(payload);
-     dispatch(postPostFn(payload));
+    dispatch(postPostFn(payload));
+
+    toast({
+      title: "Blog has been created.",
+      description: "Yeah..! Soon will be Live.",
+      status: "success",
+      duration: 4000,
+      isClosable: true,
+    });
   };
 
   return (
     <Box>
+      <HStack p={"20px"} alignItems={"center"}>
+        <RiHome4Line size={"20px"} />
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/addpost">Add Blog</BreadcrumbLink>
+          </BreadcrumbItem>
+        </Breadcrumb>
+      </HStack>
+
       <Box w={"90%"} margin={"auto"}>
-        <Tabs>
+        <Tabs align="end" variant="enclosed">
           <TabList>
-            <Tab>Edit</Tab>
-            <Tab>Show</Tab>
+            <Tab
+              _selected={{ bg: "green.400", color: "white" }}
+              fontWeight={"bold"}
+              gap={"4px"}
+            >
+              <EditIcon />
+              Edit
+            </Tab>
+            <Tab
+              _selected={{ bg: "green.400", color: "white" }}
+              fontWeight={"bold"}
+              gap={"4px"}
+            >
+              <ViewIcon />
+              Preview
+            </Tab>
           </TabList>
 
           <TabPanels>
@@ -125,9 +168,11 @@ const Posts = () => {
                 }
               >
                 {/* Heading */}
-                <Heading as={"h1"}>Add a Blog Post</Heading>
+                <Heading as={"h1"} align="center" p={"10px"}>
+                  Add a Blog Post
+                </Heading>
                 <Editable
-                  // defaultValue="New Blog Title Here..."
+                  // placeholder="New Blog Title Here..."
                   placeholder="New Blog Title Here..."
                   fontSize="4xl"
                   textAlign={"left"}
@@ -139,7 +184,10 @@ const Posts = () => {
                   />
                 </Editable>
                 {/* Hero Image URL */}
-                <Editable placeholder="Blog Hero Image URL" textAlign={"left"}>
+                <Editable
+                  placeholder="Add a cover Image URL"
+                  textAlign={"left"}
+                >
                   <EditablePreview />
                   <EditableInput
                     value={heroimgURL}
@@ -152,9 +200,13 @@ const Posts = () => {
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                 >
-                  <option value="Houseplants">Houseplants</option>
-                  <option value="Perennials">Perennials</option>
-                  <option value="Indoor">Indoor </option>
+                  <option value="Vegetable Garden">Vegetable Garden</option>
+                  <option value="Herb Garden">Herb Garden</option>
+                  <option value="Flower Garden">Flower Garden</option>
+                  <option value="Fruit Orchard">Fruit Orchard</option>
+                  <option value="Medicinal Garden">Medicinal Garden </option>
+                  <option value="Aromatic Garden">Aromatic Garden</option>
+                  <option value="Butterfly Garden">Butterfly Garden</option>
                 </Select>
                 {/* Blog Sub-Heading-1 */}
                 <Editable
@@ -168,7 +220,7 @@ const Posts = () => {
                     onChange={(e) => setHeadingOne(e.target.value)}
                   />
                 </Editable>
-                <Editable defaultValue="Blog Image URL-1" textAlign={"left"}>
+                <Editable placeholder="Blog Image URL-1" textAlign={"left"}>
                   <EditablePreview />
                   <EditableInput
                     value={blogimgURL}
@@ -176,7 +228,7 @@ const Posts = () => {
                   />
                 </Editable>{" "}
                 {/* Blog Content-1 */}
-                <Editable defaultValue="Blog Content-1" textAlign={"left"}>
+                <Editable placeholder="Blog Content-1" textAlign={"left"}>
                   <EditablePreview />
                   <EditableTextarea
                     value={contentOne}
@@ -185,7 +237,7 @@ const Posts = () => {
                 </Editable>
                 {/* Blog Sub-Heading-2 */}
                 <Editable
-                  defaultValue="Blog Sub-Heading-2"
+                  placeholder="Blog Sub-Heading-2"
                   textAlign={"left"}
                   fontSize="2xl"
                 >
@@ -195,7 +247,7 @@ const Posts = () => {
                     onChange={(e) => setHeadingTwo(e.target.value)}
                   />
                 </Editable>
-                <Editable defaultValue="Blog Image URL-2" textAlign={"left"}>
+                <Editable placeholder="Blog Image URL-2" textAlign={"left"}>
                   <EditablePreview />
                   <EditableInput
                     value={blogimgURLTwo}
@@ -203,7 +255,7 @@ const Posts = () => {
                   />
                 </Editable>{" "}
                 {/* Blog Content-2 */}
-                <Editable defaultValue="Blog Content-2" textAlign={"left"}>
+                <Editable placeholder="Blog Content-2" textAlign={"left"}>
                   <EditablePreview />
                   <EditableTextarea
                     value={contentTwo}
@@ -211,7 +263,7 @@ const Posts = () => {
                   />
                 </Editable>
                 <Editable
-                  defaultValue="Blog Sub-Heading-3"
+                  placeholder="Blog Sub-Heading-3"
                   textAlign={"left"}
                   fontSize="2xl"
                 >
@@ -221,14 +273,14 @@ const Posts = () => {
                     onChange={(e) => setHeadingThree(e.target.value)}
                   />
                 </Editable>
-                <Editable defaultValue="Blog Image URL-3" textAlign={"left"}>
+                <Editable placeholder="Blog Image URL-3" textAlign={"left"}>
                   <EditablePreview />
                   <EditableInput
                     value={blogimgURLThree}
                     onChange={(e) => setblogImgURLThree(e.target.value)}
                   />
                 </Editable>{" "}
-                <Editable defaultValue="Blog Content-3" textAlign={"left"}>
+                <Editable placeholder="Blog Content-3" textAlign={"left"}>
                   <EditablePreview />
                   <EditableTextarea
                     value={contentThree}
@@ -236,7 +288,7 @@ const Posts = () => {
                   />
                 </Editable>{" "}
                 <Editable
-                  defaultValue="Blog Sub-Heading-4"
+                  placeholder="Blog Sub-Heading-4"
                   textAlign={"left"}
                   fontSize="2xl"
                 >
@@ -246,7 +298,7 @@ const Posts = () => {
                     onChange={(e) => setHeadingFour(e.target.value)}
                   />
                 </Editable>
-                <Editable defaultValue="Blog Content-4" textAlign={"left"}>
+                <Editable placeholder="Blog Content-4" textAlign={"left"}>
                   <EditablePreview />
                   <EditableTextarea
                     value={contentFour}
@@ -284,7 +336,6 @@ const Posts = () => {
                   category,
                   title,
                   heroimgURL,
-                  
                 }}
               />
             </TabPanel>
