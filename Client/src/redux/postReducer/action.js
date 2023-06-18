@@ -8,7 +8,7 @@ import {
   POST_REQUEST_PENDING,
 } from "./actionTypes";
 
-const API = `https://garden-guru.cyclic.app/posts/`;//process.env.REACT_APP_baseURL;
+const API = `https://garden-guru.cyclic.app/posts/`; //process.env.REACT_APP_baseURL;
 
 //For Getting The Data
 export const getPostFn = (obj, token) => (dispatch) => {
@@ -18,13 +18,10 @@ export const getPostFn = (obj, token) => (dispatch) => {
     Authorization: `Bearer ${token}`,
   };
 
-
-
-
   axios
     .get(`${API}`, { headers: headers })
     .then((res) => {
-      console.log('res-data', res.data)
+      console.log("res-data", res.data);
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
     })
     .catch((err) => {
@@ -33,36 +30,38 @@ export const getPostFn = (obj, token) => (dispatch) => {
     });
 };
 
-
 // for top post
 export const getTopPosts = (token) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
-
   const headers = {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token?.token}`
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token?.token}`,
   };
 
-
   axios
-    .get(`${API}?_sort=rating&_order=desc&_limit=3&_page=1`, { headers: headers })
+    .get(`${API}?_sort=rating&_order=desc&_limit=3&_page=1`, {
+      headers: headers,
+    })
     .then((res) => {
-      console.log('res-data', res.data)
+      console.log("res-data", res.data);
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
     })
     .catch((err) => {
-      console.log('API FAILURE', err);
+      console.log("API FAILURE", err);
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
 
-
 //For Posting The Data
 export const postPostFn = (postData) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
   return axios
-    .post(`${API}create`, postData)
+    .post(`${API}create`, postData, { headers })
     .then((res) => {
       dispatch({ type: POST_POST_REQUEST_SUCCESS });
     })
