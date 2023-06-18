@@ -1,0 +1,38 @@
+.big-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .big-table th,
+  .big-table td {
+    padding: 10px;
+    transition: background-color 0.7s ease;
+  }
+  
+  .big-table th,
+  .big-table td:hover{
+    padding: 10.1px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+
+  .big-table img {
+    width: 100px;
+    object-fit: cover;
+    height: auto;
+  }
+
+  .align-start {
+    text-align: start;
+  }
+  
+  .button {
+        background-color: rgb(231, 73, 73);
+        border-radius: 7px;
+        padding: 5px 15px;
+        border-color: green;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
+  .button:hover{
+    background-color: rgb(224, 28, 28);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  }

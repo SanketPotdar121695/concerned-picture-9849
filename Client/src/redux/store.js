@@ -6,7 +6,7 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 
-import { authReducer } from './LoginReducer/authReducer';
+import { reducer as authReducer } from './authReducer/reducer';
 import { reducer as postReducer } from './postReducer/reducer';
 
 const rootReducer = combineReducers({
