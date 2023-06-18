@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+
 import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
@@ -25,16 +26,19 @@ export const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        isAuth: payload
+        isAuth: true,
+        userDetails: payload.userDetails
       };
     }
     case LOGIN_FAILURE: {
-      return { ...state, isError: payload, isLoading: false, isAuth: false };
+      return { ...state, isError: true, isLoading: false, isAuth: false };
     }
 
     case LOGOUT: {
-      localStorage.removeItem('token');
-      return state;
+      Cookies.remove('token');
+      Cookies.remove('rToken');
+      Cookies.remove('userDetails');
+      return { ...state, isAuth: false };
     }
 
     default:

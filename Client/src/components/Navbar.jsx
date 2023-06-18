@@ -1,5 +1,30 @@
 import React from 'react';
 import {
+<<<<<<< HEAD
+  Box,
+  Flex,
+  Text,
+  IconButton,
+  Button,
+  Stack,
+  Collapse,
+  Icon,
+  Link,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  useColorModeValue,
+  useBreakpointValue,
+  useDisclosure,
+  Image,
+  Input,
+  Heading,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Avatar
+=======
     Box,
     Flex,
     Text,
@@ -18,6 +43,7 @@ import {
     Image,
     Input,
     Heading
+>>>>>>> d7cb016ff60b90f8dd9cc810f59c043290f3cc2b
 } from '@chakra-ui/react';
 import {
     HamburgerIcon,
@@ -25,13 +51,23 @@ import {
     ChevronDownIcon,
     ChevronRightIcon
 } from '@chakra-ui/icons';
-import { Link as LinkNav, NavLink } from 'react-router-dom';
+import { Link as LinkNav, NavLink, useNavigate } from 'react-router-dom';
 import { color } from 'framer-motion';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Logout } from '../redux/authReducer/action';
 
 export const Navbar = () => {
+<<<<<<< HEAD
+  const { isOpen, onToggle } = useDisclosure();
+  const dispatch = useDispatch();
+  const { isAuth: auth, userDetails } = useSelector(
+    (store) => store.authReducer
+  );
+  const navigate = useNavigate();
+=======
     const { isOpen, onToggle } = useDisclosure();
     const auth = useSelector((store) => store.authReducer.isAuth);
+>>>>>>> d7cb016ff60b90f8dd9cc810f59c043290f3cc2b
 
     return (
         <Box boxShadow={'xl'} mt={'3px'}>
@@ -81,6 +117,52 @@ export const Navbar = () => {
                     <Input type='search' w={'30%'} />
                 </Flex>
 
+<<<<<<< HEAD
+        {auth ? (
+          <Menu>
+            <MenuButton>
+              {/* Hi, {userDetails.username.split(' ')[0]} */}
+              <Avatar bg='green.200' name={userDetails.username} />
+            </MenuButton>
+            <MenuList>
+              <MenuItem bg={'none'} cursor='auto'>
+                Hi, {userDetails.username.split(' ')[0]} !!!
+              </MenuItem>
+              <MenuItem onClick={() => navigate('/profile')}>
+                Your Profile
+              </MenuItem>
+              {userDetails.isAdmin ? (
+                <MenuItem onClick={() => navigate('/admin')}>
+                  Admin Panel
+                </MenuItem>
+              ) : (
+                <></>
+              )}
+              <MenuItem onClick={() => dispatch(Logout())}>Logout</MenuItem>
+            </MenuList>
+          </Menu>
+        ) : (
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={'flex-end'}
+            direction={'row'}
+            spacing={6}
+          >
+            <Button fontSize={'sm'} fontWeight={400} variant={'link'}>
+              <LinkNav to={'/login'}>Sign In</LinkNav>
+            </Button>
+            <Button
+              display={{ base: 'none', md: 'inline-flex' }}
+              fontSize={'sm'}
+              fontWeight={600}
+              colorScheme={'whatsapp'}
+            >
+              <LinkNav to={'/signup'}>Sign Up</LinkNav>
+            </Button>
+          </Stack>
+        )}
+      </Flex>
+=======
                 <Stack
                     flex={{ base: 1, md: 0 }}
                     justify={'flex-end'}
@@ -100,6 +182,7 @@ export const Navbar = () => {
                     </Button>
                 </Stack>
             </Flex>
+>>>>>>> d7cb016ff60b90f8dd9cc810f59c043290f3cc2b
 
             <Collapse in={isOpen} animateOpacity>
                 <MobileNav />

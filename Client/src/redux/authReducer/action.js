@@ -1,4 +1,4 @@
-import axios from 'axios';
+import instance from '../../utils/axiosInstance';
 import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
@@ -6,25 +6,23 @@ import {
   LOGOUT
 } from './actionType';
 
-const API = "https://garden-guru.cyclic.app";
-
 export const Login = (userDetails) => {
-    return (dispatch) => {
-        dispatch({ type: LOGIN_REQUEST });
-        console.log(userDetails);
-        return axios.post(`${API}/users/login`, userDetails).then(
-            (res) => dispatch({ type: LOGIN_SUCCESS, payload: res.data }),
-            (err) => dispatch({ type: LOGIN_FAILURE })
-        );
-    };
+  return (dispatch) => {
+    dispatch({ type: LOGIN_REQUEST });
+    // console.log(userDetails);
+    return instance.post(`/users/login`, userDetails).then(
+      (res) => dispatch({ type: LOGIN_SUCCESS, payload: res }),
+      (err) => dispatch({ type: LOGIN_FAILURE, payload: err.response })
+    );
+  };
 };
 
 export const Logout = () => (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
-  return axios
-    .post(`${API}users/logout`)
+  return instance
+    .post(`/users/logout`)
     .then((res) => {
       dispatch({ type: LOGOUT });
     })
-    .catch((err) => dispatch({ type: LOGIN_FAILURE }));
+    .catch((err) => dispatch({ type: LOGIN_FAILURE, payload: err }));
 };
