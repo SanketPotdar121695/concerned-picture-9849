@@ -22,7 +22,7 @@ export const getPostFn = (obj, token) => (dispatch) => {
 
 
   axios
-    .get(`${API}`, { headers: headers })
+    .get(`${API}?${obj}`, { headers: headers })
     .then((res) => {
       console.log('res-data', res.data)
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
