@@ -16,8 +16,6 @@ const Home = () => {
           borderRadius={"base"} m="auto" />
         <Flex direction="column" shadow={"xl"} p={"20px"} lineHeight="50px" textAlign="start" pl="40px">
 
-
-
           <Heading size='xl' _hover={{ color: "green" }} marginTop={"20px"}>Making lavender Oil :Preserve the Scent og the South</Heading>
           <Text size="20px">Do you love lavender?You can process the fragrant in your garden into atomatic lavender oil,with this simple instruction</Text>
           <Box alignContent={"end"} w="100%" textAlign="end">

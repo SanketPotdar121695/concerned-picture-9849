@@ -18,6 +18,7 @@ const UserRoutes = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/allpost' element={<PrivateRoute><AllPostList /></PrivateRoute>} />
         <Route path='*' element={<PageNotFound />} />
+
       </Routes>
     </>
   );
