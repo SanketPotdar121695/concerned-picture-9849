@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
@@ -5,11 +6,14 @@ import {
   LOGOUT
 } from './actionType';
 
-let token = localStorage.getItem('token') || null;
+let token = Cookies.get('token');
+let userDetails = JSON.parse(Cookies.get('userDetails')) || {};
+
 const initialState = {
   isAuth: token ? true : false,
   isError: false,
-  isLoading: false
+  isLoading: false,
+  userDetails: userDetails
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -18,10 +22,14 @@ export const reducer = (state = initialState, { type, payload }) => {
       return { ...state, isLoading: true };
     }
     case LOGIN_SUCCESS: {
-      return { ...state, token: payload, isLoading: false, isAuth: true };
+      return {
+        ...state,
+        isLoading: false,
+        isAuth: payload
+      };
     }
     case LOGIN_FAILURE: {
-      return { ...state, isError: true, isLoading: false, isAuth: false };
+      return { ...state, isError: payload, isLoading: false, isAuth: false };
     }
 
     case LOGOUT: {
