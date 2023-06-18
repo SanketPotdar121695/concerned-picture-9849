@@ -200,9 +200,13 @@ const Posts = () => {
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                 >
-                  <option value="Houseplants">Houseplants</option>
-                  <option value="Perennials">Perennials</option>
-                  <option value="Indoor">Indoor </option>
+                  <option value="Vegetable Garden">Vegetable Garden</option>
+                  <option value="Herb Garden">Herb Garden</option>
+                  <option value="Flower Garden">Flower Garden</option>
+                  <option value="Fruit Orchard">Fruit Orchard</option>
+                  <option value="Medicinal Garden">Medicinal Garden </option>
+                  <option value="Aromatic Garden">Aromatic Garden</option>
+                  <option value="Butterfly Garden">Butterfly Garden</option>
                 </Select>
                 {/* Blog Sub-Heading-1 */}
                 <Editable
