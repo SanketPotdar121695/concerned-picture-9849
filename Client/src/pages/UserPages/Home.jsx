@@ -1,7 +1,10 @@
 import { Img, Box, Text, Heading, Button, Flex } from "@chakra-ui/react";
+import AllPostList from "../../components/AllPostsList";
 import React from "react";
 import { Icon } from '@chakra-ui/react'
 import { ArrowForwardIcon } from "@chakra-ui/icons";
+import TopPosts from "../../components/TopPosts";
+import { Link as LinkNav, NavLink } from "react-router-dom";
 
 
 const Home = () => {
@@ -9,11 +12,9 @@ const Home = () => {
     <Box w={"80%"} margin={"auto"} >
       <Box mt={"30px"}  >
 
-        <Img src="https://www.mygarden.com/sites/default/files/styles/msg_teaser_full_1200/public/lavender-oil-istock-826296566.jpg?h=01990d67&itok=5HWQvw3I"
+        <Img w="100%" src="https://www.mygarden.com/sites/default/files/styles/msg_teaser_full_1200/public/lavender-oil-istock-826296566.jpg?h=01990d67&itok=5HWQvw3I"
           borderRadius={"base"} m="auto" />
         <Flex direction="column" shadow={"xl"} p={"20px"} lineHeight="50px" textAlign="start" pl="40px">
-
-
 
           <Heading size='xl' _hover={{ color: "green" }} marginTop={"20px"}>Making lavender Oil :Preserve the Scent og the South</Heading>
           <Text size="20px">Do you love lavender?You can process the fragrant in your garden into atomatic lavender oil,with this simple instruction</Text>
@@ -26,6 +27,27 @@ const Home = () => {
 
 
         </Flex>
+
+      </Box>
+
+      <Box>
+        {/* <AllPostList /> */}
+        <Box bg='green.200' width={'98%'} margin={'auto'}>
+          <Text color={'red'} fontSize={"25px"} ml='3px' mt={"20px"} fontFamily={'monospace'} >Popular Posts</Text>
+        </Box>
+
+        <TopPosts />
+        <Box w={"80%"}> <LinkNav to="/allpost">
+          <Button size={"lg"} p={"10px"}
+            variant='outline'
+            bg={'green.400'}
+            color={'white'}
+            _hover={{
+              bg: 'green.500'
+            }}>
+            Show More Posts
+          </Button>
+        </LinkNav></Box>
 
       </Box>
 

@@ -41,7 +41,11 @@ export default function SimpleCard() {
     dispatch(Login(userDetails)).then((res) => {
       if (res.payload) {
         localStorage.setItem("token", res.payload.token)
-        navigate("/")
+        if (location.state) {
+          navigate(location.state)
+        } else {
+          navigate("/")
+        }
       } else {
         alert("please Sign up")
       }
@@ -65,13 +69,13 @@ export default function SimpleCard() {
           boxShadow={'lg'}
           p={8}>
           <Stack spacing={4}>
-            <Box>
+            <Box hidden="true">
               <FormControl id="firstName" isRequired>
                 <FormLabel>First Name</FormLabel>
                 <Input type="text" value={first_name} onChange={(e) => setFirstName(e.target.value)} />
               </FormControl>
             </Box>
-            <Box>
+            <Box hidden='true'>
               <FormControl id="lastName">
                 <FormLabel>Last Name</FormLabel>
                 <Input type="text" value={last_name} onChange={(e) => setLastName(e.target.value)} />

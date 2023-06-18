@@ -13,3 +13,12 @@ code {
 .plants img {
   width: 47%;
 }
+
+.post-card-text {
+  background-color: lightgray;
+  border-radius: 1rem;
+  width: fit-content;
+  padding: 5px 10px;
+  color: orange;
+  text-transform: uppercase;
+}
