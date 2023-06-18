@@ -1,8 +1,13 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './actionType';
+import {
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGOUT
+} from './actionType';
 
+let token = localStorage.getItem('token') || null;
 const initialState = {
-  isAuth: false,
-  token: '',
+  isAuth: token ? true : false,
   isError: false,
   isLoading: false
 };
@@ -17,6 +22,11 @@ export const reducer = (state = initialState, { type, payload }) => {
     }
     case LOGIN_FAILURE: {
       return { ...state, isError: true, isLoading: false, isAuth: false };
+    }
+
+    case LOGOUT: {
+      localStorage.removeItem('token');
+      return state;
     }
 
     default:

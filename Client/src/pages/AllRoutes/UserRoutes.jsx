@@ -5,6 +5,7 @@ import Signup from "../UserPages/Signup";
 import Login from "../UserPages/Login";
 import Posts from "../UserPages/Posts";
 import PageNotFound from "../../utils/PageNotFound";
+import AllPostList from "../../components/AllPostsList";
 import Profile from "../UserPages/Profile";
 const UserRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const UserRoutes = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/addpost" element={<Posts />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/allpost" element={<AllPostList />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>

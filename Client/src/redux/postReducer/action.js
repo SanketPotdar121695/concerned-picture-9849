@@ -8,19 +8,23 @@ import {
   POST_REQUEST_PENDING,
 } from "./actionTypes";
 
-const API = `https://garden-guru.cyclic.app`;
+const API = `https://garden-guru.cyclic.app/posts/`;//process.env.REACT_APP_baseURL;
 
 //For Getting The Data
-export const getPostFn = (obj) => (dispatch) => {
+export const getPostFn = (obj, token) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
   };
+
+
+
+
   axios
-    .get(`${API}`, obj)
+    .get(`${API}`, { headers: headers })
     .then((res) => {
-      // console.log('res-data',res.data)
+      console.log('res-data', res.data)
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
     })
     .catch((err) => {
@@ -29,15 +33,36 @@ export const getPostFn = (obj) => (dispatch) => {
     });
 };
 
-//For Posting The Data
-export const postPostFn = (payload) => (dispatch) => {
+
+// for top post
+export const getTopPosts = (token) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
-  const token = localStorage.getItem("token");
+
+
   const headers = {
-    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token?.token}`
   };
+
+
+  axios
+    .get(`${API}?_sort=rating&_order=desc&_limit=3&_page=1`, { headers: headers })
+    .then((res) => {
+      console.log('res-data', res.data)
+      dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
+    })
+    .catch((err) => {
+      console.log('API FAILURE', err);
+      dispatch({ type: POST_REQUEST_FAILURE });
+    });
+};
+
+
+//For Posting The Data
+export const postPostFn = (postData) => (dispatch) => {
+  dispatch({ type: POST_REQUEST_PENDING });
   return axios
-    .post(`${API}/posts/create`, payload, { headers })
+    .post(`${API}create`, postData)
     .then((res) => {
       dispatch({ type: POST_POST_REQUEST_SUCCESS });
     })
