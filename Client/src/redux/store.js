@@ -6,9 +6,8 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 
-
-import { reducer as authReducer } from "./authReducer/reducer";
-import { reducer as postReducer } from "./postReducer/reducer";
+import { reducer as authReducer } from './authReducer/reducer';
+import { reducer as postReducer } from './postReducer/reducer';
 
 const rootReducer = combineReducers({
   postReducer,
