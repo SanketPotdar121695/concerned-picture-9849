@@ -41,7 +41,11 @@ export default function SimpleCard() {
     dispatch(Login(userDetails)).then((res) => {
       if (res.payload) {
         localStorage.setItem("token", res.payload.token)
-        navigate("/")
+        if (location.state) {
+          navigate(location.state)
+        } else {
+          navigate("/")
+        }
       } else {
         alert("please Sign up")
       }
