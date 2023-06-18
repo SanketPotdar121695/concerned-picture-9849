@@ -8,8 +8,8 @@ export const PostCard = ({ title, image, category }) => {
             <Img w="280px" borderLeftRadius="1rem" src={image} />
             <Flex direction="column" ml="50px" textAlign="start" pr="30px" mt="70px">
                 <Text className='post-card-text'>{category}</Text>
-                <Heading>{title}</Heading>
-                <Button mt="auto" ml="auto" mb="20px" colorScheme='teal' w="130px" variant='outline' _hover={{
+                <Heading _hover={{ color: "green" }} >{title}</Heading>
+                <Button mt="10px" ml="auto" mb="20px" colorScheme='teal' w="130px" variant='outline' _hover={{
                     bg: 'green.400', color: "white"
                 }} > Learn More  <br /> <Icon as={ArrowForwardIcon} /></Button>
             </Flex>
