@@ -42,7 +42,6 @@ const deleteUserforAdmin = async (req, res) => {
 
     if (userID) {
       await UserModel.findByIdAndDelete(userID);
-
       return res.status(200).send({
         message: `The user with ID: ${userID} has been removed from the DB.`
       });
@@ -127,13 +126,14 @@ const getPostsforAdmin = async (req, res) => {
 const deletePostforAdmin = async (req, res) => {
   try {
     let postID = req.params.postID;
+    console.log(postID)
 
     if (postID) {
-      let deletedPost = await PostModel.findByIdAndRemove(postID);
-      let post = new DeletedPostModel(deletedPost);
-      await post.save();
+      let deletedPost = await PostModel.findByIdAndDelete(postID);
+      // const post = new DeletedPostModel(deletedPost);
+      // await post.save();
 
-      return res.status(200).send({
+      res.status(200).send({
         message: `The post with ID: ${postID} has been deleted successfully!`
       });
     }
@@ -143,6 +143,7 @@ const deletePostforAdmin = async (req, res) => {
       description: 'Wrong credential provided.'
     });
   } catch (err) {
+    console.log(err, err.message)
     return res.status(400).send({ error: err.message });
   }
 };

@@ -6,8 +6,6 @@ import {
   LOGOUT
 } from './actionType';
 
-const API = process.env.REACT_APP_baseURL;
-
 export const Login = (userDetails) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });

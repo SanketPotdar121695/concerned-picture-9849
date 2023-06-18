@@ -5,10 +5,10 @@ import Signup from '../UserPages/Signup';
 import Login from '../UserPages/Login';
 import Posts from '../UserPages/Posts';
 import PageNotFound from '../../utils/PageNotFound';
-// import AllPostList from '../../components/AllPostsList';
+import AllPostList from '../../components/AllPostsList';
 import { PrivateRoute } from '../../hoc/PrivateRoute';
-// import Profile from '../UserPages/Profile';
-// import SinglePostPage from '../UserPages/SinglePostPage';
+import Profile from '../UserPages/Profile';
+import SinglePostPage from '../UserPages/SinglePostPage';
 
 const UserRoutes = () => {
   return (
@@ -24,24 +24,24 @@ const UserRoutes = () => {
             </PrivateRoute>
           }
         />
-        {/* <Route
+        <Route
           path='/profile'
           element={
             <PrivateRoute>
               <Profile />
             </PrivateRoute>
           }
-        /> */}
+        />
         <Route path='/login' element={<Login />} />
-        {/* <Route path='/singlepost/:blogId' element={<SinglePostPage />} /> */}
-        {/* <Route
+        <Route path='/singlepost/:blogId' element={<SinglePostPage />} />
+        <Route
           path='/allpost'
           element={
             <PrivateRoute>
               <AllPostList />
             </PrivateRoute>
           }
-        /> */}
+        />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </>
