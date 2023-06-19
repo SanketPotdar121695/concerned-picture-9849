@@ -85,36 +85,36 @@ npm start
 
 <div align="center">
   <h3>Home Page</h3>
-  <img src="https://github.com/SanketPotdar121695/arrogant-thread-8728/blob/main/Client/src/assets/Screenshot%20(1).png?raw=true" width="800">
-    <img src="https://github.com/SanketPotdar121695/arrogant-thread-8728/blob/main/Client/src/assets/Screenshot%20(2).png?raw=true" width="800">
+  <img src="https://github.com/SanketPotdar121695/concerned-picture-9849/blob/main/Client/src/assets/Screenshot%20(1).png?raw=true" width="800">
+    <img src="https://github.com/SanketPotdar121695/concerned-picture-9849/blob/main/Client/src/assets/Screenshot%20(2).png?raw=true" width="800">
 </div>
 
 <div align="center">
   <h3>All posts Page</h3>
-  <img src="https://github.com/SanketPotdar121695/arrogant-thread-8728/blob/main/Client/src/assets/Screenshot%20(3).png?raw=true" width="800">
-    <img src="https://github.com/SanketPotdar121695/arrogant-thread-8728/blob/main/Client/src/assets/Screenshot%20(4).png?raw=true" width="800">
+  <img src="https://github.com/SanketPotdar121695/concerned-picture-9849/blob/main/Client/src/assets/Screenshot%20(3).png?raw=true" width="800">
+    <img src="https://github.com/SanketPotdar121695/concerned-picture-9849/blob/main/Client/src/assets/Screenshot%20(4).png?raw=true" width="800">
 </div>
 
 <div align="center">
   <h3>Posts Details Page</h3>
-  <img src="https://github.com/SanketPotdar121695/arrogant-thread-8728/blob/main/Client/src/assets/Screenshot%20(5).png?raw=true" width="800">
-  <img src="https://github.com/SanketPotdar121695/arrogant-thread-8728/blob/main/Client/src/assets/Screenshot%20(6).png?raw=true" width="800">
+  <img src="https://github.com/SanketPotdar121695/concerned-picture-9849/blob/main/Client/src/assets/Screenshot%20(5).png?raw=true" width="800">
+  <img src="https://github.com/SanketPotdar121695/concerned-picture-9849/blob/main/Client/src/assets/Screenshot%20(6).png?raw=true" width="800">
 </div>
 
 <div align="center">
   <h3>Create New Post Page</h3>
-  <img src="https://github.com/SanketPotdar121695/arrogant-thread-8728/blob/main/Client/src/assets/Screenshot%20(7).png?raw=true" width="800">
-  <img src="https://github.com/SanketPotdar121695/arrogant-thread-8728/blob/main/Client/src/assets/Screenshot%20(8).png?raw=true" width="800">
+  <img src="https://github.com/SanketPotdar121695/concerned-picture-9849/blob/main/Client/src/assets/Screenshot%20(7).png?raw=true" width="800">
+  <img src="https://github.com/SanketPotdar121695/concerned-picture-9849/blob/main/Client/src/assets/Screenshot%20(8).png?raw=true" width="800">
 </div>
 
 <div align="center">
   <h3>User Registration</h3>
-  <img src="https://github.com/SanketPotdar121695/arrogant-thread-8728/blob/main/Client/src/assets/Screenshot%20(9).png?raw=true" width="800">
+  <img src="https://github.com/SanketPotdar121695/concerned-picture-9849/blob/main/Client/src/assets/Screenshot%20(9).png?raw=true" width="800">
 </div>
 
 <div align="center">
   <h3>User Login</h3>
-    <img src="https://github.com/SanketPotdar121695/arrogant-thread-8728/blob/main/Client/src/assets/Screenshot%20(10).png?raw=true" width="800">
+    <img src="https://github.com/SanketPotdar121695/concerned-picture-9849/blob/main/Client/src/assets/Screenshot%20(10).png?raw=true" width="800">
 </div>
 
 ## Demo
