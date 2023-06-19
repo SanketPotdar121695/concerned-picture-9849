@@ -41,7 +41,7 @@ function AllPostList() {
                 <Box w={"78%"}>
                     <DIV>
                         {posts?.map((item) => {
-                            return <PostCard key={item.id} title={item.title} rating={item.rating} category={item.category} image={item.cover_image} />
+                            return <PostCard key={item.id} id={item.id} title={item.title} rating={item.rating} category={item.category} image={item.cover_image} />
                         })}
                     </DIV>
 
