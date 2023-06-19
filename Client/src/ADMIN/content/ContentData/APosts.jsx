@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import css from "./Post.css";
+import instance from "../../../utils/axiosInstance";
 
-const Posts = () => {
+const APosts = () => {
   const [posts, setPosts] = useState([]);
 
   function getData() {
-    axios
-      .get("http://localhost:4300/admin/posts")
+    instance
+      .get("/admin/posts")
       .then((res) => setPosts(res.data));
   }
 
@@ -15,14 +16,15 @@ const Posts = () => {
     getData();
   }, []);
 
-function deleteById(id){
-  axios
-  .delete(`http://localhost:4300/admin/posts/delete/${id}`)
-  .then((res) => getData());
-}
-  
+  function deleteById(id) {
+    instance
+      .delete(`/admin/posts/delete/${id}`)
+      .then((res) => getData());
+  }
+
   return (
     <div>
+
       <table className="big-table">
         <thead>
           <th className="align-start">Post</th>
@@ -35,10 +37,10 @@ function deleteById(id){
             return (
               <tbody>
                 <tr>
-                   <td className="align-start"><img src={el.cover_image} alt={el.cover_image} /></td>
-                   <td className="align-start">{el.title}</td>
-                   <td className="align-start">{el.author}</td>
-                   <td className="align-start"><button  onClick={()=>{deleteById(el._id)}} className="button">Delete</button></td>
+                  <td className="align-start"><img src={el.cover_image} alt={el.cover_image} /></td>
+                  <td className="align-start">{el.title}</td>
+                  <td className="align-start">{el.author}</td>
+                  <td className="align-start"><button onClick={() => { deleteById(el._id) }} className="button">Delete</button></td>
                 </tr>
               </tbody>
             );
@@ -48,4 +50,4 @@ function deleteById(id){
   );
 };
 
-export default Posts;
+export default APosts;

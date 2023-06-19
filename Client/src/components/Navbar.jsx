@@ -128,6 +128,7 @@ export const Navbar = () => {
               <MenuItem bg={'none'} cursor='auto'>
                 Hi, {userDetails.username.split(' ')[0]} !!!
               </MenuItem>
+              <MenuItem onClick={() => navigate("/addpost")}>Create New Blog</MenuItem>
               <MenuItem onClick={() => navigate('/profile')}>
                 Your Profile
               </MenuItem>
@@ -139,6 +140,7 @@ export const Navbar = () => {
                 <></>
               )}
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
+
             </MenuList>
           </Menu>
         ) : (

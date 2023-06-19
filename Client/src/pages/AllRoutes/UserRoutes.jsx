@@ -11,6 +11,7 @@ import Profile from '../UserPages/Profile';
 import SinglePostPage from '../UserPages/SinglePostPage';
 import Admin from '../../ADMIN/Admin';
 import Users from '../../ADMIN/content/ContentData/Users';
+import APosts from '../../ADMIN/content/ContentData/APosts';
 import DeletedPosts from '../../ADMIN/content/ContentData/DeletedPosts';
 import DeletedUsers from '../../ADMIN/content/ContentData/DeletedUsers';
 
@@ -48,11 +49,17 @@ const UserRoutes = () => {
 
       <Route path='*' element={<PageNotFound />} />
 
-      <Route path="/admin" element={<Admin />} />
-      <Route path="/admin/posts" element={<Users />} />
+      {/* <Route path="/admin" element={<Admin />} />
+      <Route path="/admin/posts" element={<APosts />} />
       <Route path="/admin/users" element={<Users />} />
       <Route path="/admin/deletedPosts" element={<DeletedPosts />} />
-      <Route path="/admin/deletedUsers" element={<DeletedUsers />} />
+      <Route path="/admin/deletedUsers" element={<DeletedUsers />} /> */}
+      <Route path="admin" element={<Admin />}>
+        <Route path="posts" element={<APosts />} />
+        <Route path="users" element={<Users />} />
+        <Route path="deletedPosts" element={<DeletedPosts />} />
+        <Route path="deletedUsers" element={<DeletedUsers />} />
+      </Route>
     </Routes>
   );
 };
