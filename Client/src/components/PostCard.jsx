@@ -4,10 +4,12 @@ import React from 'react'
 
 export const PostCard = ({ title, image, category, rating }) => {
     return (
-        <Flex shadow={"dark-lg"} borderRadius="1rem" mt="20px" mb="20px" width={"100%"}>
+        <Flex shadow={"lg"} borderRadius="1rem" mt="20px" mb="20px" width={"100%"}>
             <Img w="280px" borderLeftRadius="1rem" src={image} />
             <Flex direction="column" ml="50px" textAlign="start" pr="30px" mt="70px" width={"100%"}>
-                <Text className='post-card-text'>{category}</Text>
+                <Text className='post-card-text' _hover={{
+                    bg: 'green.500'
+                }}>{category}</Text>
                 <Heading _hover={{ color: "green" }} >{title}</Heading>
                 <Flex alignItems={"center"}>
                     <Text size={"20px"}>Rating : {rating}</Text>

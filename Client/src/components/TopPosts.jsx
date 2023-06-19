@@ -21,6 +21,8 @@ function TopPosts() {
             title={item.title}
             category={item.category}
             image={item.cover_image}
+            rating={item.rating}
+
           />
         );
       })}

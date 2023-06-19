@@ -5,7 +5,11 @@ import { Icon } from '@chakra-ui/react'
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import TopPosts from "../../components/TopPosts";
 import { Link as LinkNav, NavLink } from "react-router-dom";
-
+import i1 from '../../assets/images/arrowhead-plant-leaves-lead-picture-00945875-florapress.jpg';
+import i2 from '../../assets/images/pistachio-tree-pistachios-1073400154-istock.jpg';
+import i3 from '../../assets/images/ixora-coccinea-flower-00921536-florapress.jpg';
+import i4 from '../../assets/images/shrimp-plant-justicia-brandegeana-933680970-istock.jpg';
+import i5 from '../../assets/images/kalanchoe-flaming-katy-2252484-blp-floradania.jpg';
 
 const Home = () => {
   return (
@@ -16,7 +20,7 @@ const Home = () => {
           borderRadius={"base"} m="auto" />
         <Flex direction="column" shadow={"xl"} p={"20px"} lineHeight="50px" textAlign="start" pl="40px">
 
-          <Heading size='xl' _hover={{ color: "green" }} marginTop={"20px"}>Making lavender Oil :Preserve the Scent og the South</Heading>
+          <Heading size='xl' _hover={{ color: "green" }} marginTop={"20px"}>Making lavender Oil :Preserve the Scent of the South</Heading>
           <Text size="20px">Do you love lavender?You can process the fragrant in your garden into atomatic lavender oil,with this simple instruction</Text>
           <Box alignContent={"end"} w="100%" textAlign="end">
             <Button colorScheme='teal' variant='outline' _hover={{
@@ -56,13 +60,13 @@ const Home = () => {
         <Heading mb="15px">Plants</Heading>
         <Flex gap="10px" >
           <Box w="62%">
-            <Img borderRadius="10px" src="./images/arrowhead-plant-leaves-lead-picture-00945875-florapress.jpg"></Img>
+            <Img borderRadius="10px" src={i1}></Img>
           </Box>
           <Flex w="50%" className="plants" direction="row" flexWrap="wrap" gap="10px">
-            <Img borderRadius="10px" src="./images/pistachio-tree-pistachios-1073400154-istock.jpg"></Img>
-            <Img borderRadius="10px" src="./images/ixora-coccinea-flower-00921536-florapress.jpg"></Img>
-            <Img borderRadius="10px" src="./images/shrimp-plant-justicia-brandegeana-933680970-istock.jpg"></Img>
-            <Img borderRadius="10px" src="./images/kalanchoe-flaming-katy-2252484-blp-floradania.jpg"></Img>
+            <Img borderRadius="10px" src={i2}></Img>
+            <Img borderRadius="10px" src={i3}></Img>
+            <Img borderRadius="10px" src={i4}></Img>
+            <Img borderRadius="10px" src={i5}></Img>
           </Flex>
         </Flex>
       </Box>

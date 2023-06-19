@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox, Radio, RadioGroup, Text, Box, Heading } from '@chakra-ui/react';
+import { Checkbox, Radio, RadioGroup, Text, Box, Heading, Flex } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom'
 
@@ -46,35 +46,35 @@ export const AllPostsSidebar = () => {
 
     return (
         <div >
-            <Box mt={"30px"} shadow={"xl"} >
+            <Box mt={"30px"} >
 
-                <Box border='1px' borderColor="#c4d3e8" p={"10px"} shadow={"xl"} >
+                <Flex border='1px' borderColor="#c4d3e8" p={"10px"} shadow={"xl"} mt={"50px"} flexDirection={"column"} ml={"20px"} >
 
                     <Heading fontSize={20} p={"5px"} _hover={{ color: "green" }} padding={"10px"}>Filter by Category</Heading>
                     <Checkbox type='checkbox' value={"Vegetable Garden"}
                         onChange={handleCategory} checked={category.includes("Vegetable Garden")}
-                        size='lg' colorScheme='green'>Vegetable Garden</Checkbox>
+                        size='lg' colorScheme='green'> Vegetable Garden</Checkbox>
                     <br />
                     <Checkbox type='checkbox' value={"Flower Garden"}
                         onChange={handleCategory} checked={category.includes("Flower Garden")}
-                        size='lg' colorScheme='green'>Flower Garden</Checkbox>
+                        size='lg' colorScheme='green'> Flower Garden</Checkbox>
                     <br />
                     <Checkbox type='checkbox' value={"Herb Garden"}
                         onChange={handleCategory} checked={category.includes("Herb Garden")}
-                        size='lg' colorScheme='green'>Herb Garden</Checkbox>
+                        size='lg' colorScheme='green'> Herb Garden</Checkbox>
                     <br />
                     <Checkbox type='checkbox' value={"fruit garden"}
                         onChange={handleCategory} checked={category.includes("fruit garden")}
-                        size='lg' colorScheme='green'>fruit garden</Checkbox>
+                        size='lg' colorScheme='green'> fruit garden</Checkbox>
 
                     <br />
                     <br />
                     <br />
 
-                </Box >
-                <Box border='1px' borderColor="#c4d3e8" p={"10px"} mt={"50px"} shadow={"xl"} >
+                </Flex >
+                <Flex border='1px' borderColor="#c4d3e8" p={"10px"} mt={"50px"} shadow={"xl"} flexDirection={"column"} ml={"20px"}>
 
-                    <Heading fontSize={20} p={"5px"} _hover={{ color: "green" }} padding={"10px"}>Sort by Rating</Heading>
+                    <Heading fontSize={20} p={"5px"} _hover={{ color: "green" }} padding={"10px"}> Sort by Rating </Heading>
 
                     <RadioGroup onChange={setOrderRating} value={orderRating}>
                         <Radio data-testid="sort-asc"
@@ -91,7 +91,7 @@ export const AllPostsSidebar = () => {
                     </RadioGroup>
 
 
-                </Box>
+                </Flex>
             </Box>
 
         </div>
