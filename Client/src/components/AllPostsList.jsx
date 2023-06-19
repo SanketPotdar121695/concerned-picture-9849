@@ -11,7 +11,6 @@ import { useSearchParams } from 'react-router-dom';
 
 function AllPostList() {
     const posts = useSelector((store) => store.postReducer.posts);
-    const token = useSelector((store) => store.authReducer.token);
     const [searchParams] = useSearchParams()
     const dispatch = useDispatch()
     let limit = 3;
@@ -25,7 +24,7 @@ function AllPostList() {
     }
 
     useEffect(() => {
-        dispatch(getPostFn(searchParams.toString(), token))
+        dispatch(getPostFn(searchParams.toString()))
     }, [searchParams])
 
     return (

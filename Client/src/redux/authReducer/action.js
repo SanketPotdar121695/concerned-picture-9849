@@ -20,9 +20,10 @@ export const Login = (userDetails) => {
 export const Logout = () => (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
   return instance
-    .post(`/users/logout`)
+    .get(`/users/logout`)
     .then((res) => {
-      dispatch({ type: LOGOUT });
+      console.log(res);
+      dispatch({ type: LOGOUT, payload: res });
     })
-    .catch((err) => dispatch({ type: LOGIN_FAILURE, payload: err }));
+    .catch((err) => dispatch({ type: LOGIN_FAILURE, payload: err.response }));
 };

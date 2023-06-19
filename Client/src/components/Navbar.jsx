@@ -22,7 +22,8 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  Avatar
+  Avatar,
+  useToast
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -43,6 +44,7 @@ export const Navbar = () => {
     (store) => store.authReducer
   );
   const navigate = useNavigate();
+  const toast = useToast();
 
   const handleLogout = () => {
     dispatch(Logout()).then((res) => {

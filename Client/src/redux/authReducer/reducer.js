@@ -8,7 +8,8 @@ import {
 } from './actionType';
 
 let token = Cookies.get('token');
-let userDetails = JSON.parse(Cookies.get('userDetails')) || {};
+let userDetails = Cookies.get('userDetails');
+userDetails = userDetails ? JSON.parse(userDetails) : {};
 
 const initialState = {
   isAuth: token ? true : false,

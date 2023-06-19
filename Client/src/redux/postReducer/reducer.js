@@ -4,13 +4,13 @@ import {
   PATCH_POST_REQUEST_SUCCESS,
   POST_POST_REQUEST_SUCCESS,
   POST_REQUEST_FAILURE,
-  POST_REQUEST_PENDING,
-} from "./actionTypes";
+  POST_REQUEST_PENDING
+} from './actionTypes';
 
 const initalState = {
   isLoadin: false,
   isError: false,
-  posts: [],
+  posts: []
 };
 
 export const reducer = (state = initalState, { type, payload }) => {
@@ -20,7 +20,7 @@ export const reducer = (state = initalState, { type, payload }) => {
     case GET_POST_REQUEST_SUCCESS:
       return { ...state, isLoading: false, posts: payload.data };
     case POST_POST_REQUEST_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, isLoading: false, posts: [...posts, payload] };
     case POST_REQUEST_FAILURE:
       return { ...state, isLoading: false, isError: true };
     case PATCH_POST_REQUEST_SUCCESS:

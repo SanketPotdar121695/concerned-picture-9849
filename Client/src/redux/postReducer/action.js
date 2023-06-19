@@ -1,54 +1,42 @@
-import axios from "axios";
+import instance from '../../utils/axiosInstance';
+import Cookies from 'js-cookie';
 import {
   DELETE_POST_REQUEST_SUCCESS,
   GET_POST_REQUEST_SUCCESS,
   PATCH_POST_REQUEST_SUCCESS,
   POST_POST_REQUEST_SUCCESS,
   POST_REQUEST_FAILURE,
-  POST_REQUEST_PENDING,
-} from "./actionTypes";
-
-const API = `https://garden-guru.cyclic.app/posts/`; //process.env.REACT_APP_baseURL;
+  POST_REQUEST_PENDING
+} from './actionTypes';
 
 //For Getting The Data
-export const getPostFn = (obj, token) => (dispatch) => {
+export const getPostFn = (obj) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
-  const token = localStorage.getItem("token");
-  const headers = {
-    Authorization: `Bearer ${token}`,
-  };
 
-  axios
-    .get(`${API}?${obj}`, { headers: headers })
+  instance
+    .get(`${API}?${obj}`)
     .then((res) => {
-      console.log("res-data", res.data);
+      // console.log('res-data', res.data);
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
     })
     .catch((err) => {
-      console.log("API FAILURE", err);
+      // console.log('API FAILURE', err);
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
 
 // for top post
-export const getTopPosts = (token) => (dispatch) => {
+export const getTopPosts = () => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token?.token}`,
-  };
-
-  axios
-    .get(`${API}?_sort=rating&_order=desc&_limit=3&_page=1`, {
-      headers: headers,
-    })
+  instance
+    .get(`${API}?_sort=rating&_order=desc&_limit=3&_page=1`)
     .then((res) => {
-      console.log("res-data", res.data);
+      // console.log('res-data', res.data);
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
     })
     .catch((err) => {
-      console.log("API FAILURE", err);
+      // console.log('API FAILURE', err);
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
@@ -56,17 +44,14 @@ export const getTopPosts = (token) => (dispatch) => {
 //For Posting The Data
 export const postPostFn = (postData) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
-  const token = localStorage.getItem("token");
-  const headers = {
-    Authorization: `Bearer ${token}`,
-  };
-  return axios
-    .post(`${API}create`, postData, { headers })
+
+  return instance
+    .post(`${API}create`, postData)
     .then((res) => {
-      dispatch({ type: POST_POST_REQUEST_SUCCESS });
+      dispatch({ type: POST_POST_REQUEST_SUCCESS, payload: postData });
     })
     .catch((err) => {
-      console.log("API FAILURE", err);
+      // console.log('API FAILURE', err);
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
@@ -74,17 +59,14 @@ export const postPostFn = (postData) => (dispatch) => {
 //For Patching The Data
 export const patchPostFn = (id, postData) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
-  const token = localStorage.getItem("token");
-  const headers = {
-    Authorization: `Bearer ${token}`,
-  };
-  return axios
-    .patch(`${API}/${id}`, postData, { headers })
+
+  return instance
+    .patch(`${API}/${id}`, postData)
     .then((res) => {
       dispatch({ type: PATCH_POST_REQUEST_SUCCESS, payload: res });
     })
     .catch((err) => {
-      console.log("API FAILURE", err);
+      // console.log('API FAILURE', err);
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
@@ -92,18 +74,15 @@ export const patchPostFn = (id, postData) => (dispatch) => {
 //For Deleting The Data
 export const deletePostFn = (id) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
-  const token = localStorage.getItem("token");
-  const headers = {
-    Authorization: `Bearer ${token}`,
-  };
-  return axios
-    .delete(`${API}/${id}`, { headers })
+
+  return instance
+    .delete(`${API}/${id}`)
     .then((res) => {
-      console.log("delete req", res);
+      // console.log('delete req', res);
       dispatch({ type: DELETE_POST_REQUEST_SUCCESS });
     })
     .catch((err) => {
-      console.log("API FAILURE", err);
+      // console.log('API FAILURE', err);
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
@@ -111,17 +90,14 @@ export const deletePostFn = (id) => (dispatch) => {
 // For getting all post of perticular user
 export const getallpostUser = () => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
-  const token = localStorage.getItem("token");
-  const headers = {
-    Authorization: `Bearer ${token}`,
-  };
-  return axios
-    .get(`https://garden-guru.cyclic.app/posts/myPosts`, { headers })
+
+  return instance
+    .get(`https://garden-guru.cyclic.app/posts/myPosts`)
     .then((res) => {
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
     })
     .catch((err) => {
-      console.log("API FAILURE", err);
+      console.log('API FAILURE', err);
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
