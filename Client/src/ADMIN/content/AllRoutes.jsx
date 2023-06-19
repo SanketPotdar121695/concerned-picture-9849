@@ -9,10 +9,10 @@ const AllRoutes = () => {
   return (
     <div>
       <Routes>
-        <Route path="/admin" element={<Users/>} />
-        <Route path="/admin/posts" element={<Posts/>} />
-        <Route path="/admin/deletedUsers" element={<DeletedUsers/>} />
-        <Route path="/admin/deletedPosts" element={<DeletedPosts/>} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/posts" element={<Posts />} />
+        <Route path="/admin/deletedUsers" element={<DeletedUsers />} />
+        <Route path="/admin/deletedPosts" element={<DeletedPosts />} />
       </Routes>
     </div>
   )

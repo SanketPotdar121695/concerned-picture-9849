@@ -9,7 +9,7 @@ function App() {
       <Navbar />
       <UserRoutes />
       <Footer />
-      <Admin />
+      {/* <Admin /> */}
     </div>
   );
 }

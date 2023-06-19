@@ -9,42 +9,51 @@ import AllPostList from '../../components/AllPostsList';
 import { PrivateRoute } from '../../hoc/PrivateRoute';
 import Profile from '../UserPages/Profile';
 import SinglePostPage from '../UserPages/SinglePostPage';
+import Admin from '../../ADMIN/Admin';
+import Users from '../../ADMIN/content/ContentData/Users';
+import DeletedPosts from '../../ADMIN/content/ContentData/DeletedPosts';
+import DeletedUsers from '../../ADMIN/content/ContentData/DeletedUsers';
 
 const UserRoutes = () => {
   return (
-    <>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route
-          path='/addpost'
-          element={
-            <PrivateRoute>
-              <Posts />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path='/profile'
-          element={
-            <PrivateRoute>
-              <Profile />
-            </PrivateRoute>
-          }
-        />
-        <Route path='/login' element={<Login />} />
-        <Route path='/singlepost/:blogId' element={<SinglePostPage />} />
-        <Route
-          path='/allpost'
-          element={
-            <PrivateRoute>
-              <AllPostList />
-            </PrivateRoute>
-          }
-        />
-        <Route path='*' element={<PageNotFound />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/signup' element={<Signup />} />
+      <Route
+        path='/addpost'
+        element={
+          <PrivateRoute>
+            <Posts />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path='/profile'
+        element={
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        }
+      />
+      <Route path='/login' element={<Login />} />
+      <Route path='/singlepost/:blogId' element={<SinglePostPage />} />
+      <Route
+        path='/allpost'
+        element={
+          <PrivateRoute>
+            <AllPostList />
+          </PrivateRoute>
+        }
+      />
+
+      <Route path='*' element={<PageNotFound />} />
+
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/admin/posts" element={<Users />} />
+      <Route path="/admin/users" element={<Users />} />
+      <Route path="/admin/deletedPosts" element={<DeletedPosts />} />
+      <Route path="/admin/deletedUsers" element={<DeletedUsers />} />
+    </Routes>
   );
 };
 
