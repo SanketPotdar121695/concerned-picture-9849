@@ -1,20 +1,20 @@
-import instance from '../../utils/axiosInstance';
-import Cookies from 'js-cookie';
+import instance from "../../utils/axiosInstance";
+import Cookies from "js-cookie";
 import {
   DELETE_POST_REQUEST_SUCCESS,
   GET_POST_REQUEST_SUCCESS,
   PATCH_POST_REQUEST_SUCCESS,
   POST_POST_REQUEST_SUCCESS,
   POST_REQUEST_FAILURE,
-  POST_REQUEST_PENDING
-} from './actionTypes';
+  POST_REQUEST_PENDING,
+} from "./actionTypes";
 
 //For Getting The Data
 export const getPostFn = (obj) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
   instance
-    .get(`${API}?${obj}`)
+    .get(`?${obj}`)
     .then((res) => {
       // console.log('res-data', res.data);
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
@@ -30,7 +30,7 @@ export const getTopPosts = () => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
   instance
-    .get(`${API}?_sort=rating&_order=desc&_limit=3&_page=1`)
+    .get(`?_sort=rating&_order=desc&_limit=3&_page=1`)
     .then((res) => {
       // console.log('res-data', res.data);
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
@@ -46,7 +46,7 @@ export const postPostFn = (postData) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
   return instance
-    .post(`${API}create`, postData)
+    .post(`/create`, postData)
     .then((res) => {
       dispatch({ type: POST_POST_REQUEST_SUCCESS, payload: postData });
     })
@@ -61,7 +61,7 @@ export const patchPostFn = (id, postData) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
   return instance
-    .patch(`${API}/${id}`, postData)
+    .patch(`/${id}`, postData)
     .then((res) => {
       dispatch({ type: PATCH_POST_REQUEST_SUCCESS, payload: res });
     })
@@ -76,7 +76,7 @@ export const deletePostFn = (id) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
   return instance
-    .delete(`${API}/${id}`)
+    .delete(`/${id}`)
     .then((res) => {
       // console.log('delete req', res);
       dispatch({ type: DELETE_POST_REQUEST_SUCCESS });
@@ -97,7 +97,7 @@ export const getallpostUser = () => (dispatch) => {
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
     })
     .catch((err) => {
-      console.log('API FAILURE', err);
+      console.log("API FAILURE", err);
       dispatch({ type: POST_REQUEST_FAILURE });
     });
 };
