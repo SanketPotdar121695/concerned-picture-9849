@@ -11,6 +11,7 @@ import i3 from '../../assets/images/ixora-coccinea-flower-00921536-florapress.jp
 import i4 from '../../assets/images/shrimp-plant-justicia-brandegeana-933680970-istock.jpg';
 import i5 from '../../assets/images/kalanchoe-flaming-katy-2252484-blp-floradania.jpg';
 
+
 const Home = () => {
   return (
     <Box w={"80%"} margin={"auto"} >
@@ -20,7 +21,7 @@ const Home = () => {
           borderRadius={"base"} m="auto" />
         <Flex direction="column" shadow={"xl"} p={"20px"} lineHeight="50px" textAlign="start" pl="40px">
 
-          <Heading size='xl' _hover={{ color: "green" }} marginTop={"20px"}>Making lavender Oil :Preserve the Scent of the South</Heading>
+          <Heading size='xl' _hover={{ color: "green" }} marginTop={"20px"}>Making lavender Oil :Preserve the Scent og the South</Heading>
           <Text size="20px">Do you love lavender?You can process the fragrant in your garden into atomatic lavender oil,with this simple instruction</Text>
           <Box alignContent={"end"} w="100%" textAlign="end">
             <Button colorScheme='teal' variant='outline' _hover={{

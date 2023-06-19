@@ -6,16 +6,16 @@ import { Box, Text } from "@chakra-ui/react";
 
 function TopPosts() {
   const posts = useSelector((store) => store.postReducer.posts);
-  const token = useSelector((store) => store.authReducer.token);
   const dispatch = useDispatch();
+  console.log(posts);
 
   useEffect(() => {
-    dispatch(getTopPosts(token));
+    dispatch(getTopPosts());
   }, []);
 
   return (
     <div style={{ width: "70%" }}>
-      {posts.map((item) => {
+      {posts?.map((item) => {
         return (
           <PostCard
             title={item.title}

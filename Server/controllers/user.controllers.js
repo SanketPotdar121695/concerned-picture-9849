@@ -11,8 +11,9 @@ const signup = async (req, res) => {
 
     if (existingUser.length) {
       return res.status(400).send({
-        error:
-          'Registration failed! A user already exists with the same email ID. Please try again with different email ID.'
+        error: 'Registration failed!',
+        description:
+          'A user already exists with the same email ID. Please try again with different email ID.'
       });
     }
 
@@ -35,7 +36,8 @@ const login = async (req, res) => {
 
     if (!existingUser) {
       return res.status(400).send({
-        error: 'Login failed! Wrong credentials provided. Please try again.'
+        error: 'Login failed!',
+        description: 'Wrong credentials provided. Please try again.'
       });
     }
 
@@ -64,13 +66,22 @@ const login = async (req, res) => {
             expiresIn: '30d'
           }
         );
+
+        const userDetails = {
+          userID: existingUser._id,
+          username: `${existingUser.first_name} ${existingUser.last_name}`,
+          email: existingUser.email,
+          isAdmin: existingUser.isAdmin
+        };
+
         return res
           .status(200)
-          .send({ message: 'Login successful!', token, rToken });
+          .send({ message: 'Login successful!', token, rToken, userDetails });
       }
       return res.status(400).send({
-        error:
-          'Login failed! Wrong password provided. Please check your password and try again.'
+        error: 'Login failed!',
+        description:
+          'Wrong password provided. Please check your password and try again.'
       });
     });
   } catch (err) {
@@ -89,9 +100,10 @@ const logout = async (req, res) => {
         .send({ message: 'You are logged out successfully!' });
     }
 
-    return res
-      .status(400)
-      .send({ error: 'You are already logged out. Please login again.' });
+    return res.status(400).send({
+      error: 'You are already logged out.',
+      description: 'Please login again.'
+    });
   } catch (err) {
     return res.status(400).send({ error: err.message });
   }

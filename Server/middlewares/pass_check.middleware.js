@@ -3,8 +3,8 @@ let passCheck = (req, res, next) => {
 
   if (password.length < 8) {
     return res.status(400).send({
-      error:
-        'Registration failed! Password should be atleast 8 characters long.'
+      error: 'Registration failed!',
+      description: 'Password should be atleast 8 characters long.'
     });
   }
 
@@ -23,8 +23,9 @@ let passCheck = (req, res, next) => {
   if (nums && splChars && upperChars) return next();
 
   return res.status(400).send({
-    error:
-      'Registration failed! Password should contain atleast one uppercase character, one number & a special character.'
+    error: 'Registration failed!',
+    description:
+      'Password should contain atleast one uppercase character, one number & a special character.'
   });
 };
 

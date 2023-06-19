@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
@@ -5,11 +7,15 @@ import {
   LOGOUT
 } from './actionType';
 
-let token = localStorage.getItem('token') || null;
+let token = Cookies.get('token');
+let userDetails = Cookies.get('userDetails');
+userDetails = userDetails ? JSON.parse(userDetails) : {};
+
 const initialState = {
   isAuth: token ? true : false,
   isError: false,
-  isLoading: false
+  isLoading: false,
+  userDetails: userDetails
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -18,15 +24,22 @@ export const reducer = (state = initialState, { type, payload }) => {
       return { ...state, isLoading: true };
     }
     case LOGIN_SUCCESS: {
-      return { ...state, token: payload, isLoading: false, isAuth: true };
+      return {
+        ...state,
+        isLoading: false,
+        isAuth: true,
+        userDetails: payload.userDetails
+      };
     }
     case LOGIN_FAILURE: {
       return { ...state, isError: true, isLoading: false, isAuth: false };
     }
 
     case LOGOUT: {
-      localStorage.removeItem('token');
-      return state;
+      Cookies.remove('token');
+      Cookies.remove('rToken');
+      Cookies.remove('userDetails');
+      return { ...state, isAuth: false };
     }
 
     default:
