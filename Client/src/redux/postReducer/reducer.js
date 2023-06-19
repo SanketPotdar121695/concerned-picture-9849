@@ -4,13 +4,13 @@ import {
   PATCH_POST_REQUEST_SUCCESS,
   POST_POST_REQUEST_SUCCESS,
   POST_REQUEST_FAILURE,
-  POST_REQUEST_PENDING
-} from './actionTypes';
+  POST_REQUEST_PENDING,
+} from "./actionTypes";
 
 const initalState = {
   isLoadin: false,
   isError: false,
-  posts: []
+  posts: [],
 };
 
 export const reducer = (state = initalState, { type, payload }) => {

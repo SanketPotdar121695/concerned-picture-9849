@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import css from "./Post.css";
+import instance from "../../../utils/axiosInstance";
 
 const DeletedPosts = () => {
   const [posts, setPosts] = useState([]);
 
   function getData() {
-    axios
-      .get("http://localhost:4300/admin/deletedPosts")
+    instance
+      .get("/admin/deletedPosts")
       .then((res) => setPosts(res.data));
   }
 
@@ -17,7 +18,7 @@ const DeletedPosts = () => {
   // console.log(posts);
 
 
-  
+
   return (
     <div>
       <table className="big-table">
@@ -31,9 +32,9 @@ const DeletedPosts = () => {
             return (
               <tbody>
                 <tr>
-                   <td className="align-start"><img src={el.cover_image} alt={el.cover_image} /></td>
-                   <td className="align-start">{el.title}</td>
-                   <td className="align-start">{el.author}</td>
+                  <td className="align-start"><img src={el.cover_image} alt={el.cover_image} /></td>
+                  <td className="align-start">{el.title}</td>
+                  <td className="align-start">{el.author}</td>
                 </tr>
               </tbody>
             );

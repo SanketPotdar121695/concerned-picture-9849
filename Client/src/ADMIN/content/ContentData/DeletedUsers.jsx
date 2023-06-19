@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import css from "./Users.css";
+import instance from "../../../utils/axiosInstance";
 
 const DeletedUsers = () => {
   const [users, setusers] = useState([]);
 
   function getData() {
-    axios
-      .get("http://localhost:4300/admin/users")
+    instance
+      .get("/admin/users")
       .then((res) => setusers(res.data));
   }
 
@@ -15,11 +16,11 @@ const DeletedUsers = () => {
     getData();
   }, []);
 
-function deleteById(id){
-  axios
-  .delete(`http://localhost:4300/admin/users/remove/${id}`)
-  .then((res) => getData());
-}
+  function deleteById(id) {
+    instance
+      .delete(`/admin/users/remove/${id}`)
+      .then((res) => getData());
+  }
 
   return (
     <div>
@@ -34,9 +35,9 @@ function deleteById(id){
             return (
               <tbody>
                 <tr>
-                   <td className="align-start">{el.first_name}</td>
-                   <td className="align-start">{el.email}</td>
-                   <td className="align-start">{el.city}</td>
+                  <td className="align-start">{el.first_name}</td>
+                  <td className="align-start">{el.email}</td>
+                  <td className="align-start">{el.city}</td>
                 </tr>
               </tbody>
             );
