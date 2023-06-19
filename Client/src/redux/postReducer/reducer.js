@@ -20,7 +20,7 @@ export const reducer = (state = initalState, { type, payload }) => {
     case GET_POST_REQUEST_SUCCESS:
       return { ...state, isLoading: false, posts: payload.data };
     case POST_POST_REQUEST_SUCCESS:
-      return { ...state, isLoading: false, posts: [...posts, payload] };
+      return { ...state, isLoading: false, posts: [...state.posts, payload] };
     case POST_REQUEST_FAILURE:
       return { ...state, isLoading: false, isError: true };
     case PATCH_POST_REQUEST_SUCCESS:
