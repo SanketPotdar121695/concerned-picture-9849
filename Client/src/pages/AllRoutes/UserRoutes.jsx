@@ -5,6 +5,12 @@ import Signup from '../UserPages/Signup';
 import Login from '../UserPages/Login';
 import Posts from '../UserPages/Posts';
 import PageNotFound from '../../utils/PageNotFound';
+import Users from '../../ADMIN/content/ContentData/Users';
+// import APosts from '../../ADMIN/content/ContentData/APosts';
+import DeletedUsers from '../../ADMIN/content/ContentData/DeletedUsers';
+import DeletedPosts from '../../ADMIN/content/ContentData/DeletedPosts';
+import Admin from '../../ADMIN/Admin';
+import APosts from '../../ADMIN/content/ContentData/APosts';
 const UserRoutes = () => {
   return (
     <>
@@ -13,7 +19,14 @@ const UserRoutes = () => {
         <Route path='/signup' element={<Signup />} />
         <Route path='/addpost' element={<Posts />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login />} />
         <Route path='*' element={<PageNotFound />} />
+        <Route path="admin" element={<Admin />}>
+          <Route path="posts" element={<Users/>} />
+          <Route path="users" element={<Users />} />
+          <Route path="deletedPosts" element={<DeletedPosts />} />
+          <Route path="deletedUsers" element={<DeletedUsers />} />
+          </Route>
       </Routes>
     </>
   );

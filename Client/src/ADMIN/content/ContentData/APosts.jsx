@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import css from "./Post.css";
 
-const Posts = () => {
+const APosts = () => {
   const [posts, setPosts] = useState([]);
 
   function getData() {
@@ -23,6 +23,7 @@ function deleteById(id){
   
   return (
     <div>
+     
       <table className="big-table">
         <thead>
           <th className="align-start">Post</th>
@@ -48,4 +49,4 @@ function deleteById(id){
   );
 };
 
-export default Posts;
+export default APosts;

@@ -7,7 +7,7 @@ import css from './Admin.css'
 const Admin = () => {
   return (
     <div className='Admin'>
-      <AdminNavbar/>
+      {/* <AdminNavbar/> */}
       <div className='adminContent'>
         <Sidebar/>
         <Content/>
