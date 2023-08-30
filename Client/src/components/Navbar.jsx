@@ -362,8 +362,8 @@ const NAV_ITEMS = [
     href: '#'
   },
   {
-    label: 'More Plants',
-    href: '#'
+    label: 'Seeds',
+    href: '/seeds'
   }
 ];
 

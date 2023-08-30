@@ -20,6 +20,7 @@ import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as LinkNav, NavLink, useNavigate } from 'react-router-dom';
 import instance from '../../utils/axiosInstance';
+import { url } from '../../url';
 
 export default function SignupCard() {
   const toast = useToast();
@@ -47,7 +48,7 @@ export default function SignupCard() {
     };
 
     instance
-      .post('/users/register', payload)
+      .post(`${url}/users/register`, payload)
       .then((res) => {
         toast({
           title: res.data.message,

@@ -5,12 +5,14 @@ import {
   LOGIN_SUCCESS,
   LOGOUT
 } from './actionType';
+import { url } from '../../url';
+
 
 export const Login = (userDetails) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
     // console.log(userDetails);
-    return instance.post(`/users/login`, userDetails).then(
+    return instance.post(`${url}/users/login`, userDetails).then(
       (res) => dispatch({ type: LOGIN_SUCCESS, payload: res }),
       (err) => dispatch({ type: LOGIN_FAILURE, payload: err.response })
     );
@@ -20,7 +22,7 @@ export const Login = (userDetails) => {
 export const Logout = () => (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
   return instance
-    .get(`/users/logout`)
+    .get(`${url}/users/logout`)
     .then((res) => {
       console.log(res);
       dispatch({ type: LOGOUT, payload: res });
