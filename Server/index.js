@@ -6,6 +6,7 @@ const { userRouter } = require('./routes/user.routes');
 const { postRouter } = require('./routes/post.routes');
 const { adminRouter } = require('./routes/admin.routes');
 const { regenerate } = require('./controllers/user.controllers');
+const { seedsRouter } = require('./routes/seeds.routes');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.get('/regenerate', regenerate);
 app.use('/users', userRouter);
 app.use('/posts', postRouter);
 app.use('/admin', adminRouter);
+app.use('/seeds', seedsRouter);
 
 // Listening to the server
 app.listen(PORT, connection);
