@@ -8,13 +8,15 @@ import {
   POST_REQUEST_FAILURE,
   POST_REQUEST_PENDING,
 } from "./actionTypes";
+import { url } from "../../url";
+
 
 //For Getting The Data
 export const getPostFn = (obj) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
   instance
-    .get(`/posts/?${obj}`)
+    .get(`${url}/posts/?${obj}`)
     .then((res) => {
       // console.log('res-data', res.data);
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
@@ -30,7 +32,7 @@ export const getTopPosts = () => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
   instance
-    .get(`/posts/?_sort=rating&_order=desc&_limit=3&_page=1`)
+    .get(`${url}/posts/?_sort=rating&_order=desc&_limit=3&_page=1`)
     .then((res) => {
       // console.log('res-data', res.data);
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
@@ -46,7 +48,7 @@ export const postPostFn = (postData) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
   return instance
-    .post(`/posts/create`, postData)
+    .post(`${url}/posts/create`, postData)
     .then((res) => {
       dispatch({ type: POST_POST_REQUEST_SUCCESS, payload: postData });
     })
@@ -61,7 +63,7 @@ export const patchPostFn = (id, postData) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
   return instance
-    .patch(`/posts/${id}`, postData)
+    .patch(`${url}/posts/${id}`, postData)
     .then((res) => {
       dispatch({ type: PATCH_POST_REQUEST_SUCCESS, payload: res });
     })
@@ -76,7 +78,7 @@ export const deletePostFn = (id) => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
   return instance
-    .delete(`/posts/${id}`)
+    .delete(`${url}/posts/${id}`)
     .then((res) => {
       // console.log('delete req', res);
       dispatch({ type: DELETE_POST_REQUEST_SUCCESS });
@@ -92,7 +94,7 @@ export const getallpostUser = () => (dispatch) => {
   dispatch({ type: POST_REQUEST_PENDING });
 
   return instance
-    .get(`/posts/myPosts`)
+    .get(`${url}/posts/myPosts`)
     .then((res) => {
       dispatch({ type: GET_POST_REQUEST_SUCCESS, payload: res });
     })
