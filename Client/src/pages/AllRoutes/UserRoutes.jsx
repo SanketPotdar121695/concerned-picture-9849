@@ -15,6 +15,7 @@ import APosts from '../../ADMIN/content/ContentData/APosts';
 import DeletedPosts from '../../ADMIN/content/ContentData/DeletedPosts';
 import DeletedUsers from '../../ADMIN/content/ContentData/DeletedUsers';
 import { Seedslist } from '../../components/Seeds';
+import Cart from '../seed/Cart';
 
 const UserRoutes = () => {
   return (
@@ -53,6 +54,12 @@ const UserRoutes = () => {
           // <PrivateRoute>
             <Seedslist />
           // </PrivateRoute>
+        }
+      />
+      <Route
+        path='/cart'
+        element={
+            <Cart />
         }
       />
 
