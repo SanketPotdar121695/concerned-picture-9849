@@ -1,107 +1,79 @@
 import React from 'react'
 import { useEffect } from 'react'
-import {  useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from "axios"
 
 const Cart = () => {
-     const [cartrem,setcartremove]=useState(false)
-    const token = JSON.parse(localStorage.getItem("token"))
-    const [val,setval]=useState(1)
+
+    const [cartdata,setCARTdata] = useState([])
+    const [count,setLength] = useState(0)
+    const [price,setPrice] = useState(0)
+    const [value,setval] = useState(1)
     const navigate=useNavigate()
-     let [count,setcount]=useState(0)
-    const total=useSelector((store)=>{
-        return store.ProductReducer.total
-    })
-    const cartdata = useSelector((store) => {
-        return store.ProductReducer.CART
-    })
 
     const getcart = () => {
        
-        fetch("http://localhost:8080/seeds/cart", {
-            method: "GET",
-            // headers: {
-            //     "Content-Type": "application/json",
-            //     "Authorization": `Bearer ${token}`
-
-            // }
-        }).then((res) => {
-            return res.json()
-        }).then((data) => {
-            setcount(data.msg.length)
-            // setcount(data)
-           
+        axios.get("https://easy-red-pigeon-tutu.cyclic.app/seeds/cart")
+        .then((res) => {
+            setCARTdata(res.data)
+            setLength(res.data.length)
+            pricefun(res.data)
+            // return res.json()
         }).catch((err) => {
             console.log(err)
         })
     }
+    
+     function pricefun(ele){
+    //    console.log(ele)
+    let sum = 0
+       for (let el of ele){
+        //    console.log(el.price)
+        // sum += el.price
+        sum+= Number(el.price * value)
+       }
+       setPrice(sum)
+     }
+  
+    const cartremove= (ele)=>{
+        // console.log(ele._id)
+        axios.delete(`https://easy-red-pigeon-tutu.cyclic.app/seeds/cart/${ele._id}`)
+        getcart()
+    }
+
+
+    useEffect(() => {
+        getcart()
+    }, [value])
+    // useEffect(()=>{
+    //     carttotal()
+    // },[val])
+  
     const handlechnage=(val)=>{
         setval(+val)
     }
-      const carttotal=()=>{
-        let total=0
-        for(let i=0;i<=cartdata.length-1;i++){
-            if (cartdata[i].price){
 
-                total+= Number(cartdata[i].price * val)
-            }else{
-                total+=25
-            }
-        }
-        localStorage.setItem("total",JSON.stringify(total))
-      }
-  
-    const cartremove= (el)=>{
-        const {_id}=el
-           //console.log(el)
-         fetch(`http://localhost:8080/cart/${_id}`,{
-            method:"DELETE",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization": `Bearer ${token}`
-            }
-         }).then((res)=>{
-            return res.json()
-         }).then((data)=>{
-            //console.log(data)
-            setcartremove(!cartrem)
-            getcart()
-            //console.log("eleemet removed")
-         }).catch((err)=>{
-            //console.log(err)
-         })
-    }
-    // useEffect(()=>{
-    //     setcount(cartdata.length)
-    // },[count])
-    useEffect(() => {
-        getcart()
-    }, [val,total,cartrem,count])
-    useEffect(()=>{
-        carttotal()
-    },[val])
-  
-   const handlepayment=()=>{
-    navigate("/payment")
-   }
-    
-    console.log(count)
+    const handlepayment = () => {
+        navigate("/checkout")
+      };
+      
+
     
    
     return (
         <Div>
             <div className='container'>
                 <div className='total'>
-                    <h3>Subtotal:${total}</h3>
+                    <h2>Subtotal: ₹{price}</h2>
                     <button onClick={handlepayment} className='btn' style={{cursor:"pointer"}}>CHECKOUT</button>
                 </div>
                 <div>
                     <p style={{ marginLeft: "0px" }}>Shipping, Tax & Coupons are applied on the next page.</p>
                 </div>
                 <div style={{ height: "50px", width: "100%", border: "1px solid rgb(249,249,249)", display: "flex", alignItems: "center" }}>
-                    <h4>IN CART { count} ITEM</h4>
+                    <h4>IN CART {count} ITEM</h4>
                 </div>
                 <hr />
                 <div className='cartcontainer'>
@@ -112,7 +84,7 @@ const Cart = () => {
                                 <div className='productcontainer'>
                                     <div style={{height:"250px",width:"20%",marginTop:"20px"}}>
                                         {
-                                            el.avatar?  <img width="60%" height="200px" src={el.avatar} alt="" />:<img width="60%" height="200px" src={el.Poster
+                                            el.image?  <img width="60%" height="200px" src={el.image} alt="" />:<img width="60%" height="200px" src={el.Poster
                                             } alt="" />
                                         }
                                       
@@ -120,11 +92,11 @@ const Cart = () => {
 
                                     <div style={{ marginLeft: "10px", textJustify: "auto" ,width:"80%",textAlign:"justify"}}>
                                         {
-                                           el.category? <h4>{el.category}</h4>:<h4>{el.Title}</h4>
+                                        <h2>{el.title}</h2>
                                         }
                                         
-                                        <p>${el.price || 25}</p>
-                                        <p>Estimated dilivery 2 days</p>
+                                        <p>₹ {el.price || 25}</p>
+                                        <p>Estimated delivery 2 days</p>
                                         <select name="" id=""   onChange={(e)=>handlechnage(e.target.value)}>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
