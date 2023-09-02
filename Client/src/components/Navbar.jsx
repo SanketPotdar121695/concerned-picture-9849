@@ -364,10 +364,6 @@ const NAV_ITEMS = [
   {
     label: 'Seeds',
     href: '/seeds'
-  },
-  {
-    label: 'Cart',
-    href: '/cart'
   }
 ];
 

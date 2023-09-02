@@ -15,9 +15,6 @@ import APosts from '../../ADMIN/content/ContentData/APosts';
 import DeletedPosts from '../../ADMIN/content/ContentData/DeletedPosts';
 import DeletedUsers from '../../ADMIN/content/ContentData/DeletedUsers';
 import { Seedslist } from '../../components/Seeds';
-import Cart from '../seed/Cart';
-import Checkout from '../seed/Checkout';
-import Payment from '../seed/Payment';
 
 const UserRoutes = () => {
   return (
@@ -42,8 +39,6 @@ const UserRoutes = () => {
       />
       <Route path='/login' element={<Login />} />
       <Route path='/singlepost/:blogId' element={<SinglePostPage />} />
-      <Route path='/checkout' element={<Checkout />} />
-      <Route path='/payment' element={<Payment />} />
       <Route
         path='/allpost'
         element={
@@ -58,12 +53,6 @@ const UserRoutes = () => {
           // <PrivateRoute>
             <Seedslist />
           // </PrivateRoute>
-        }
-      />
-      <Route
-        path='/cart'
-        element={
-            <Cart />
         }
       />
 

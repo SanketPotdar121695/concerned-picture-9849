@@ -1,1 +1,1 @@
-export const url = "https://easy-red-pigeon-tutu.cyclic.app"
+export const url = "http://localhost:8080"
