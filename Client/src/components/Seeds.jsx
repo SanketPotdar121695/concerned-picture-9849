@@ -9,7 +9,7 @@ export const Seedslist = () => {
   // console.log(products)
   useEffect(() => {
     // Make the API call
-    axios.get('http://localhost:8080/seeds')
+    axios.get('https://easy-red-pigeon-tutu.cyclic.app/seeds')
       .then(res => {
         // console.log(res.data)
         setProducts(res.data);
