@@ -1,10 +1,23 @@
 import React from 'react';
 import { Box, Image, Text, Button } from '@chakra-ui/react';
+import axios from "axios"
 
 const SeedCard = ({ product }) => {
 
   const handleAdd =()=>{
-    console.log("hello")
+    // console.log(product)
+    axios.post(`https://easy-red-pigeon-tutu.cyclic.app/seeds/cartadd`,{
+      image:product.image,
+      title:product.title,
+      price:product.price
+    })
+    .then(res => {
+      console.log(res)
+      alert("Produce added")
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
 
   }
 

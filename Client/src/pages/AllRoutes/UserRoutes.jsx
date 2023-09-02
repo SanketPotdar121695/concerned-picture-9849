@@ -16,12 +16,16 @@ import DeletedPosts from '../../ADMIN/content/ContentData/DeletedPosts';
 import DeletedUsers from '../../ADMIN/content/ContentData/DeletedUsers';
 import { Seedslist } from '../../components/Seeds';
 import Cart from '../seed/Cart';
+import Payment from '../seed/Payment';
+import Checkout from '../seed/Checkout';
 
 const UserRoutes = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/signup' element={<Signup />} />
+      <Route path='/payment' element={<Payment />} />
+      <Route path='/checkout' element={<Checkout />} />
       <Route
         path='/addpost'
         element={
